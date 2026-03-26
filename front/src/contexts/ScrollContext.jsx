@@ -1,6 +1,5 @@
 import LocomotiveScroll from "locomotive-scroll";
 import {
-	Children,
 	createContext,
 	useRef,
 	useState,
@@ -15,15 +14,29 @@ export const ScrollProvider = ({ children }) => {
 	const [scrollInstance, setScrollInstance] = useState(null);
 
 	useEffect(() => {
+		const container = document.querySelector("[data-scroll-container]");
+
+		if (!container || scrollRef.current) {
+			return;
+		}
+
 		try {
 			scrollRef.current = new LocomotiveScroll({
-				el: document.querySelector("[data-scroll-container]"),
+				el: container,
 				smooth: true,
 			});
 			setScrollInstance(scrollRef.current);
 		} catch (e) {
 			console.log(e);
 		}
+
+		return () => {
+			if (scrollRef.current) {
+				scrollRef.current.destroy();
+				scrollRef.current = null;
+				setScrollInstance(null);
+			}
+		};
 	}, []);
 
 	return (

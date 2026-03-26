@@ -3,6 +3,9 @@ import { ScrollProvider } from "./contexts/ScrollContext";
 import SobreMim from "./components/SobreMim";
 import Landing from "./components/Landing";
 import Especialidades from "./components/Especialidades";
+import Depoimentos from "./components/Depoimentos";
+import Contato from "./components/Contato";
+import Footer from "./components/Footer";
 
 function App() {
 	return (
@@ -13,6 +16,9 @@ function App() {
 					<Landing />
 					<SobreMim />
 					<Especialidades />
+					<Depoimentos />
+					<Contato />
+					<Footer />
 				</div>
 			</ScrollProvider>
 		</>

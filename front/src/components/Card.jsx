@@ -25,7 +25,7 @@ const cardData = [
 	}, {
 		id: 4,
 		title: "Salada",
-		image: salada,
+		image: saladas,
 		text: "Sou"
 	}
 ];

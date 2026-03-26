@@ -1,16 +1,42 @@
-import { useEffect, useState } from "react";
-import logo from "../assets/lory-logo-removebg-preview.png";
+import React, { useState, useEffect } from "react";
+import { Leaf, Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useScroll } from "../contexts/ScrollContext";
 
-export default function Navbar() {
-	const { scroll } = useScroll();
-	const [scrolled, setScrolled] = useState(false);
+const navLinks = [
+  { label: "Sobre mim", href: "#sobre" },
+  { label: "Especialidades", href: "#especialidades" },
+  { label: "Depoimentos", href: "#depoimentos" },
+];
 
-	useEffect(() => {
+export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const { scroll } = useScroll();
+
+  const handleNavigate = (event, href, closeMobile = false) => {
+    if (!href?.startsWith("#")) return;
+
+    event.preventDefault();
+    const target = document.querySelector(href);
+
+    if (target && scroll) {
+      scroll.scrollTo(target, { offset: -24, duration: 900 });
+    } else if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    if (closeMobile) {
+      setMobileOpen(false);
+    }
+  };
+
+  useEffect(() => {
 		if (!scroll) return;
 
 		const onScroll = args => {
-			setScrolled(args.scroll.y > 40);
+      const sectionTrigger = window.innerHeight * 0.9;
+      setScrolled(args.scroll.y >= sectionTrigger);
 		};
 
 		scroll.on("scroll", onScroll);
@@ -20,39 +46,84 @@ export default function Navbar() {
 		};
 	}, [scroll]);
 
-	return (
-		<nav
-			className={`fixed font-poppins top-0 w-full z-30 transitio duration-300 flex justify-between px-24 items-center h-16 
-				bg-white/10 backdrop-blur-sm  `}
-		>
-			<img
-				src={logo}
-				alt="Logo da Lory"
-				className="w-fit h-24 object-contain"
-			/>
-			<div className="flex space-x-24 justify-end">
-				<a
-					href=""
-					className={`text-xl transition-all z-70 duration-300 
-						text-green-950 text-shadow-md  hover:text-yellow-500 font-medium`}
-				>
-					Sobre mim
-				</a>
-				<a
-					href=""
-					className={`text-xl transition-all z-70 duration-300 
-						text-green-950 text-shadow-md  hover:text-yellow-500 font-medium`}
-				>
-					Áreas
-				</a>
-				<a
-					href=""
-					className={`text-xl transition-all z-70 duration-300 
-						text-green-950 text-shadow-md  hover:text-yellow-500 font-medium`}
-				>
-					Contatos
-				</a>
-			</div>
-		</nav>
-	);
+  return (
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "justify-between px-24 items-center h-16 bg-white/10 backdrop-blur-sm"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="w-full px-5 md:px-8 lg:px-14 xl:px-20 2xl:px-28 py-8 flex items-center justify-between">
+        <a
+          href="#inicio"
+          onClick={(event) => handleNavigate(event, "#inicio")}
+          className="flex items-center gap-2 group"
+        >
+          <Leaf className="w-5 h-5 text-primary text-green-700 transition-transform group-hover:rotate-12" />
+          {scrolled && <span className="font-raleway text-xl text-green-700 font-semibold tracking-tight text-foreground">
+            Lory Cavalcante
+          </span>}
+        </a>
+
+        <div className="hidden md:flex items-center gap-8 ">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={(event) => handleNavigate(event, link.href)}
+              className={`text-sm font-poppins font-medium transition-colors hover:text-gray-300 ${scrolled ? 'text-green-700' : 'text-white'}`}
+            >
+              {link.label}
+            </a>
+          ))}
+          <a
+            href="#contato"
+            onClick={(event) => handleNavigate(event, "#contato")}
+            className={`text-sm font-poppins font-medium transition-colors hover:text-gray-300 ${scrolled ? 'text-green-700' : 'text-white'}`}
+          >
+            Agende sua consulta
+          </a>
+        </div>
+
+        <button
+          className="md:hidden text-foreground"
+          onClick={() => setMobileOpen(!mobileOpen)}
+        >
+          {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
+      </div>
+
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-background/95 backdrop-blur-lg border-b border-border overflow-hidden"
+          >
+            <div className="flex flex-col px-6 py-4 gap-4">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(event) => handleNavigate(event, link.href, true)}
+                  className="text-base font-medium text-foreground hover:text-primary transition-colors"
+                >
+                  {link.label}
+                </a>
+              ))}
+              <a
+                href="#contato"
+                onClick={(event) => handleNavigate(event, "#contato", true)}
+                className="text-sm font-medium bg-primary text-primary-foreground px-5 py-2.5 rounded-full text-center hover:bg-primary/90 transition-colors"
+              >
+                Agende sua consulta
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
+  );
 }

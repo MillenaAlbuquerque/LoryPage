@@ -2,7 +2,7 @@ import Card from "./Card"
 
 function Especialidades() {
     return (
-        <section data-scroll-section className="bg-cyan-50">
+        <section data-scroll-section className="bg-cyan-50" id="especialidades">
             <div className="flex gap-12 items-center justify-center h-screen px-12">
                 <div className="w-1/2 flex flex-col space-y-12">
                     <div
@@ -27,7 +27,7 @@ function Especialidades() {
                         </p>
                     </div>
                     <button
-                        className="font-poppins bg-cyan-300 text-cyan-950 shadow-lg px-8 py-1 text-lg cursor-pointer rounded-xl w-fit self-center
+                        className="font-poppins bg-cyan-300 text-cyan-950 shadow-lg px-8 py-2 text-lg cursor-pointer rounded-xl w-fit self-center
                                     hover:bg-cyan-900 hover:text-white   hover:scale-105 transition duration-300 "
                         data-scroll
                         data-scroll-speed="0"

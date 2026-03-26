@@ -2,7 +2,7 @@ import lory from "../../src/assets/lory-fake.jpg";
 
 export default function SobreMim() {
 	return (
-		<section data-scroll-section className="bg-amber-50 text-slate-200">
+		<section data-scroll-section className="bg-amber-50 text-slate-200" id="sobre">
 			<div className="flex h-[110vh] w-dvw px-12 items-center justify-around">
 				<a
 					className="h-full items-center flex cursor-default"
@@ -40,7 +40,7 @@ export default function SobreMim() {
 						</p>
 					</div>
 					<button
-						className="font-poppins bg-amber-300 text-amber-950 shadow-lg px-8 py-1 text-lg cursor-pointer rounded-xl w-fit self-center
+						className="font-poppins bg-amber-300 text-amber-950 shadow-lg px-8 py-2 text-lg cursor-pointer rounded-xl w-fit self-center
                                     hover:bg-amber-900 hover:text-white   hover:scale-105 transition duration-300 "
 						data-scroll
 						data-scroll-speed="0"
