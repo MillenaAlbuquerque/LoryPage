@@ -102,7 +102,7 @@ npm run deploy
 ```
 
 O site é publicado automaticamente na branch `gh-pages` e fica disponível em:
-`https://seu-usuario.github.io/LoryPage/`
+`https://millenaalbuquerque.github.io/LoryPage/`
 
 ---
 
