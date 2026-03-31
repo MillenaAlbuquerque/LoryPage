@@ -1,6 +1,6 @@
-<h1 align="center">
-  🌿 Lory Cavalcante — Nutricionista
-</h1>
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=220&color=9FFFC3&text=🌿%20Lory%20Cavalcante%20-%20Nutricionista&fontColor=ffffff&fontSize=38&animation=fadeIn&fontAlignY=40&desc=React%20%7C%20Flask%20%7C%20MySQL&descAlignY=62" alt="Fogazza Banner" />
+</p>
 
 <p align="center">
   Landing page profissional desenvolvida para a nutricionista <strong>Lory Cavalcante</strong>,
