@@ -7,6 +7,7 @@ const navLinks = [
   { label: "Sobre mim", href: "#sobre" },
   { label: "Especialidades", href: "#especialidades" },
   { label: "Depoimentos", href: "#depoimentos" },
+  { label: "Agende sua consulta", href: "#contato" },
 ];
 
 export default function Navbar() {
@@ -50,7 +51,7 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "justify-between px-24 items-center h-16 bg-white/10 backdrop-blur-sm"
+          ? "justify-between px-2 items-center h-16 bg-white/10 backdrop-blur-sm"
           : "bg-transparent"
       }`}
     >
@@ -77,17 +78,11 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <a
-            href="#contato"
-            onClick={(event) => handleNavigate(event, "#contato")}
-            className={`text-sm font-poppins font-medium transition-colors hover:text-gray-300 ${scrolled ? 'text-green-700' : 'text-white'}`}
-          >
-            Agende sua consulta
-          </a>
+          
         </div>
 
         <button
-          className="md:hidden text-foreground"
+          className="md:hidden text-foreground text-green-900 focus:outline-none"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
           {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -100,7 +95,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background/95 backdrop-blur-lg border-b border-border overflow-hidden"
+            className="md:hidden bg-background/95 backdrop-blur-sm text-green-700 overflow-hidden"
           >
             <div className="flex flex-col px-6 py-4 gap-4">
               {navLinks.map((link) => (
@@ -113,13 +108,7 @@ export default function Navbar() {
                   {link.label}
                 </a>
               ))}
-              <a
-                href="#contato"
-                onClick={(event) => handleNavigate(event, "#contato", true)}
-                className="text-sm font-medium bg-primary text-primary-foreground px-5 py-2.5 rounded-full text-center hover:bg-primary/90 transition-colors"
-              >
-                Agende sua consulta
-              </a>
+              
             </div>
           </motion.div>
         )}

@@ -98,3 +98,9 @@ html.has-scroll-dragging {
 	right: auto;
 	bottom: 0;
 }
+
+@media (max-width: 640px) {
+	[data-scroll] {
+		transform: none !important;
+	}
+}

@@ -3,7 +3,7 @@ import lory from "../../src/assets/lory-fake.jpg";
 export default function SobreMim() {
 	return (
 		<section data-scroll-section className="bg-amber-50 text-slate-200" id="sobre">
-			<div className="flex h-[110vh] w-dvw px-12 items-center justify-around">
+			<div className="flex flex-col sm:flex-row h-auto sm:h-[110vh] w-dvw px-6 sm:px-12 items-center justify-around gap-8 sm:gap-0 pb-12 sm:pb-0">
 				<a
 					className="h-full items-center flex cursor-default"
 					href="https://www.instagram.com/lorycavalcantenutri/"
@@ -17,13 +17,13 @@ export default function SobreMim() {
                                     transition duration-400 hover:scale-120 rounded-lg hover:drop-shadow-none "
 					></img>
 				</a>
-				<div className="max-w-1/2 flex flex-col space-y-12">
+				<div className="w-full sm:max-w-1/2 flex flex-col space-y-6 sm:space-y-12">
 					<div
-						className="w-full flex flex-col items-center bg-amber-200 p-6 rounded-xl shadow-xl text-amber-900 space-y-4"
+						className="w-full flex flex-col items-center bg-amber-200 p-4 sm:p-6 rounded-xl shadow-xl text-amber-900 space-y-2 sm:space-y-4"
 						data-scroll
 						data-scroll-speed="3"
 					>
-						<h1 className="text-6xl text-center font-poppins transition duration-400 hover:text-amber-700 w-fit">
+						<h1 className="text-3xl sm:text-6xl text-center font-poppins transition duration-400 hover:text-amber-700 w-fit">
 							Sobre mim
 						</h1>
 						<p className="text-justify font-poppins transition duration-400 hover:text-amber-700">

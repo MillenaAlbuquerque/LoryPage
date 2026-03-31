@@ -1,4 +1,5 @@
 import fundo from "../../src/assets/pessego.jpg";
+import fundoMobile from "../../src/assets/pessego-copy.jpg";
 import { useScroll } from "../contexts/ScrollContext";
 
 export default function Landing() {
@@ -25,8 +26,14 @@ export default function Landing() {
 		>
 			<div className="fixed -inset-8 overflow-hidden">
 				<img
+					src={fundoMobile}
+					className="sm:hidden h-full w-full object-cover object-center scale-100 brightness-80"
+					data-scroll
+					data-scroll-speed="-8"
+				></img>
+				<img
 					src={fundo}
-					className="h-full w-full object-cover object-center scale-100 brightness-90"
+					className="hidden sm:block h-full w-full object-cover object-center scale-100 brightness-90"
 					data-scroll
 					data-scroll-speed="-8"
 				></img>
@@ -34,17 +41,17 @@ export default function Landing() {
 				<div className="absolute inset-0 bg-gradient-to-r from-white/30 via-white/20 via-45% to-transparent"></div>
 				<div className="absolute inset-y-0 left-0 w-[58%] bg-[radial-gradient(circle_at_left_center,rgba(226, 205, 205, 0.9)_0%,rgba(70,28,28,0.62)_32%,rgba(70,28,28,0.18)_58%,transparent_85%)]"></div>
 			</div>
-			<div className="relative z-10 flex flex-col max-w-4/10 pl-12">
-				<div className="-space-y-8">
+			<div className="relative z-10 flex flex-col max-w-full md:max-w-4/10 px-6 md:pl-12 gap-5 sm:gap-0">
+				<div className="space-y-2 sm:-space-y-8">
 					<h1
-						className="text-8xl text-center font-raleway text-shadow-sm text-shadow-black/40 font-light text-green-700"
+						className="text-6xl sm:text-8xl text-left sm:text-center font-raleway text-shadow-sm text-shadow-black/40 font-light text-green-700 sm:text-green-700"
 						data-scroll
 						data-scroll-speed="2"
 					>
 						Lory Cavalcante
 					</h1>
 					<h2
-						className="text-6xl text-center font-sacramento text-amber-400	"
+						className="text-6xl text-left sm:text-center font-sacramento text-amber-400	"
 						data-scroll
 						data-scroll-speed="2"
 					>
@@ -52,7 +59,7 @@ export default function Landing() {
 					</h2>
 				</div>
 				<p
-					className="text-lg text-justify font-roboto text-yellow-900"
+					className="text-lg text-left md:text-justify font-roboto text-yellow-900 "
 					data-scroll
 					data-scroll-speed="2"
 				>
@@ -64,7 +71,7 @@ export default function Landing() {
 				<div
 					data-scroll
 					data-scroll-speed="2"
-					className="flex items-center justify-center gap-6"
+					className="flex flex-col sm:flex-row items-center sm:justify-center gap-6"
 				>
 					<a
 						href="#contato"

@@ -36,7 +36,7 @@ export default function Card() {
 
 	return (
 		<>
-			<div className="w-1/2 grid grid-cols-2 gap-4">
+			<div className="w-full sm:w-1/2 grid grid-cols-2 gap-4">
 				{cardData.map((card) => (
 					<motion.div
 						key={card.id}

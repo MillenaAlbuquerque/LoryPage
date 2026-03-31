@@ -45,7 +45,7 @@ const infoItems = [
 function Contato() {
     return (
         <section data-scroll-section className="bg-green-50" id="contato">
-            <div className="flex h-screen items-center justify-center gap-10 px-10">
+            <div className="flex flex-col lg:flex-row h-auto lg:h-screen items-center justify-center gap-6 lg:gap-10 px-6 lg:px-8 py-12 lg:py-0">
                 <div
                     className="w-full lg:w-1/2 flex flex-col space-y-2 p-4 text-green-900"
                     data-scroll
@@ -59,7 +59,7 @@ function Contato() {
                         magnam, ad voluptas praesentium, et quibusdam quis nesciunt. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id
                         magnam, ad voluptas praesentium, et quibusdam quis nesciunt. Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
                     </p>
-                        <div className="flex w-full gap-6 mt-4">
+                        <div className="flex flex-col lg:flex-row w-full gap-2 lg:gap-6 mt-4">
                             {[socialItems, infoItems].map((group, gi) => (
                                 <div key={gi} className="flex flex-1 flex-col gap-4">
                                     {group.map((item, index) => (
@@ -88,7 +88,7 @@ function Contato() {
                         </div> */}
                 </div>
 
-                <div className="group relative hidden w-full lg:flex lg:w-2/4" data-scroll data-scroll-speed="2">
+                <div className="group relative flex flex-col w-full lg:w-2/4 gap-4" data-scroll data-scroll-speed="2">
                     <div className="w-full overflow-hidden rounded-xl bg-transparent p-3 shadow-gray-300/50 transition duration-500 hover:shadow-xl">
                         <img
                             src={escritorio}
@@ -96,7 +96,7 @@ function Contato() {
                             className="h-[24rem] w-full rounded-lg object-cover transition duration-500 hover:scale-105"
                         />
                     </div>
-                    <div className="absolute -bottom-3 -left-3 z-20 h-34 w-76 overflow-hidden rounded-xl border border-green-300/80 shadow-xl transition-all duration-500 ease-in-out hover:h-[26rem] hover:w-[calc(100%-0.1rem)]">
+                    <div className="relative h-48 w-full lg:absolute lg:-bottom-3 lg:-left-3 lg:z-20 lg:h-34 lg:w-76 overflow-hidden rounded-xl border border-green-300/80 shadow-xl transition-all duration-500 ease-in-out lg:hover:h-[26rem] lg:hover:w-[calc(100%-0.1rem)]">
                         <Mapa className="h-full w-full" />
                     </div>
                 </div>
