@@ -126,6 +126,12 @@ O site está publicado automaticamente na branch `gh-pages` e disponível em:
 
 ---
 
+## Contato da Profissional
+
+- **Instagram:** [@lorycavalcantenutri](https://www.instagram.com/lorycavalcantenutri/)
+
+---
+
 ## Autores
 
 | Nome | GitHub |
