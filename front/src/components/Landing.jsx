@@ -3,7 +3,7 @@ import fundoMobile from "../../src/assets/pessego-copy.jpg";
 import { useScroll } from "../contexts/ScrollContext";
 
 export default function Landing() {
-	const { scroll } = useScroll();
+	const { scroll, isMobile } = useScroll();
 
 	const handleNavigate = (event, href) => {
 		if (!href?.startsWith("#")) return;
@@ -22,20 +22,18 @@ export default function Landing() {
 		<section
 			data-scroll-section
 			id="inicio"
-			className="relative h-screen w-dvw flex flex-col justify-center overflow-hidden"
+			className="relative h-dvh w-dvw flex flex-col justify-center overflow-hidden"
 		>
-			<div className="fixed -inset-8 overflow-hidden">
+			<div className={`fixed overflow-hidden ${isMobile ? "inset-0" : "-inset-8"}`}>
 				<img
 					src={fundoMobile}
 					className="sm:hidden h-full w-full object-cover object-center scale-100 brightness-80"
-					data-scroll
-					data-scroll-speed="-8"
+					{...(!isMobile && { "data-scroll": true, "data-scroll-speed": "-8" })}
 				></img>
 				<img
 					src={fundo}
 					className="hidden sm:block h-full w-full object-cover object-center scale-100 brightness-90"
-					data-scroll
-					data-scroll-speed="-8"
+					{...(!isMobile && { "data-scroll": true, "data-scroll-speed": "-8" })}
 				></img>
 				<div className="absolute inset-0 bg-white/[0.02] backdrop-blur-[0.5px]"></div>
 				<div className="absolute inset-0 bg-gradient-to-r from-white/30 via-white/20 via-45% to-transparent"></div>
@@ -45,23 +43,20 @@ export default function Landing() {
 				<div className="space-y-2 sm:-space-y-8">
 					<h1
 						className="text-6xl sm:text-8xl text-left sm:text-center font-raleway text-shadow-sm text-shadow-black/40 font-light text-green-700 sm:text-green-700"
-						data-scroll
-						data-scroll-speed="2"
+						{...(!isMobile && { "data-scroll": true, "data-scroll-speed": "2" })}
 					>
 						Lory Cavalcante
 					</h1>
 					<h2
 						className="text-6xl text-left sm:text-center font-sacramento text-amber-400	"
-						data-scroll
-						data-scroll-speed="2"
+						{...(!isMobile && { "data-scroll": true, "data-scroll-speed": "2" })}
 					>
 						Nutricionista
 					</h2>
 				</div>
 				<p
 					className="text-lg text-left md:text-justify font-roboto text-yellow-900 "
-					data-scroll
-					data-scroll-speed="2"
+					{...(!isMobile && { "data-scroll": true, "data-scroll-speed": "2" })}
 				>
 					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore
 					distinctio nostrum porro fugiat tenetur quaerat veritatis quam facere,
@@ -69,8 +64,7 @@ export default function Landing() {
 					Omnis, laborum maxime!
 				</p>
 				<div
-					data-scroll
-					data-scroll-speed="2"
+					{...(!isMobile && { "data-scroll": true, "data-scroll-speed": "2" })}
 					className="flex flex-col sm:flex-row items-center sm:justify-center gap-6"
 				>
 					<a
