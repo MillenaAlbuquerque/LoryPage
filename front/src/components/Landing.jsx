@@ -24,7 +24,7 @@ export default function Landing() {
 			id="inicio"
 			className="relative h-dvh w-dvw flex flex-col justify-center overflow-hidden"
 		>
-			<div className={`fixed overflow-hidden ${isMobile ? "inset-0" : "-inset-8"}`}>
+			<div className={`${isMobile ? "absolute inset-0" : "fixed -inset-8"} overflow-hidden`}>
 				<img
 					src={fundoMobile}
 					className="sm:hidden h-full w-full object-cover object-center scale-100 brightness-80"
