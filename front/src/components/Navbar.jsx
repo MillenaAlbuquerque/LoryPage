@@ -33,18 +33,21 @@ export default function Navbar() {
   };
 
   useEffect(() => {
-		if (!scroll) return;
-
-		const onScroll = args => {
-      const sectionTrigger = window.innerHeight * 0.9;
-      setScrolled(args.scroll.y >= sectionTrigger);
-		};
-
-		scroll.on("scroll", onScroll);
-
-		return () => {
-			scroll.off("scroll", onScroll);
-		};
+		if (scroll) {
+			const onScroll = args => {
+				const sectionTrigger = window.innerHeight * 0.9;
+				setScrolled(args.scroll.y >= sectionTrigger);
+			};
+			scroll.on("scroll", onScroll);
+			return () => scroll.off("scroll", onScroll);
+		} else {
+			const onScroll = () => {
+				const sectionTrigger = window.innerHeight * 0.9;
+				setScrolled(window.scrollY >= sectionTrigger);
+			};
+			window.addEventListener("scroll", onScroll, { passive: true });
+			return () => window.removeEventListener("scroll", onScroll);
+		}
 	}, [scroll]);
 
   return (
@@ -85,7 +88,7 @@ export default function Navbar() {
           className="md:hidden text-foreground text-green-900 focus:outline-none"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
-          {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6 text-white" />}
         </button>
       </div>
 
