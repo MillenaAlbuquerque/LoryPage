@@ -13,17 +13,15 @@ function Especialidades() {
                         <h1 className="text-3xl sm:text-6xl text-center font-poppins transition duration-400 hover:text-cyan-700 w-fit">
                             Minhas especialidades
                         </h1>
-                        <p className="text-xs sm:text-base text-justify font-poppins transition duration-400 hover:text-cyan-700">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id
-                            magnam, ad voluptas praesentium, et quibusdam quis nesciunt
-                            repellendus distinctio deleniti ea temporibus maiores animi, enim
-                            ab aut. Beatae, quisquam modi!
+                        <p className="text-sm sm:text-base text-justify font-poppins transition duration-400 hover:text-cyan-700">
+                            Sei que a nutrição é uma ferramenta essencial não apenas para transformação estética, mas principalmente como base para prevenção de doenças e promoção de saúde a longo prazo. 
                         </p>
-                        <p className="text-xs sm:text-base text-justify font-poppins transition duration-400 hover:text-cyan-700">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id
-                            magnam, ad voluptas praesentium, et quibusdam quis nesciunt
-                            repellendus distinctio deleniti ea temporibus maiores animi, enim
-                            ab aut. Beatae, quisquam modi!
+                        <p className="text-sm  sm:text-base text-justify font-poppins transition duration-400 hover:text-cyan-700">
+                            Mais do que seguir um plano, você aprende a se alimentar com consciência, estratégia e liberdade. 
+ 
+Sem extremismos, sem terrorismo nutricional, apenas ciência aplicada de forma prática, sustentável e alinhada à sua rotina. 
+
+Porque resultados consistentes não vêm de soluções rápidas, mas de estratégias bem construídas. 
                         </p>
                     </div>
                     <button
@@ -32,7 +30,7 @@ function Especialidades() {
                         data-scroll
                         data-scroll-speed="0"
                     >
-                        lorem
+                        Veja ao lado meus serviços!
                     </button>
                 </div>
                 <Card />

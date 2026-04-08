@@ -1,30 +1,36 @@
 import { Star } from "lucide-react";
 import { motion } from "framer-motion";
 import iogurte from "../assets/iogurte.jpg";
+import fotoTatiana from "../assets/Tatiana.png";
+import fotoFabiana from "../assets/Fabiana.png";
+import fotoLaura from "../assets/Laura.png";
 
 
 const depoimentos = [
 	{
 		id: 1,
-		nome: "Ana Luíza",
+		foto: fotoTatiana,
+		nome: "Tatiana Cristina da Silva Damásio Souza",
 		texto:
-			"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id magnam, ad voluptas praesentium, et quibusdam quis nesciun repellendus distinctio deleniti ea temporibus maiores animi, enimab aut.",
+			"Lory, na verdade eu queria te agradecer por estar vivendo essa experência de novos hábitos. A gente reclama no começo, mas quando vê resultados vindo, metas batidas, e aprendendo a se alimentar de verdade e virando uma rotina, é gratificante. Estou amando esse processo!",
 		estrelas: 5,
 		cargo: "Advogada e paciente há 2 anos",
 	},
 	{
 		id: 2,
-		nome: "Carla Mendes",
+		foto: fotoFabiana,
+		nome: "Fabiana Andrade Rantiglieri",
 		texto:
-			"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id magnam, ad voluptas praesentium, et quibusdam quis nesciun repellendus distinctio deleniti ea temporibus maiores animi.",
+			"Minha irmã e eu decidimos procurar uma nutricionista para auxiliar no processo de perda de peso, sou diabética tipo 1. Então vimos o contato da Lory na internet e decidimos conhecer seu trabalho, estou fazendo acompanhamento com ela por 2 meses e meio e venho gostando muito. Profissional comprometida com o que faz, atenciosa e acessível, recomendo!!!",
 		estrelas: 5,
 		cargo: "Contadora e paciente há 1 ano",
 	},
 	{
 		id: 3,
-		nome: "Juliana Rocha",
+		foto: fotoLaura,
+		nome: "Laura Nascimento dos Santos",
 		texto:
-			"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id magnam, ad voluptas praesentium, et quibusdam quis nesciun repellendus distinctio deleniti ea temporibus maiores animi.",
+			"A Lory é uma pessoa com a aura incrível! Me senti super acolhida desde o primeiro contato. Diariamente resolve qualquer dúvida que eu tenha e vem com a solução para qualquer coisa! Quanto ao plano, é super acessível e dentro da realidade de cada um. Estou amando!",
 		estrelas: 5,
 		cargo: "Paciente há 6 meses",
 	},
@@ -61,7 +67,7 @@ export default function Depoimentos() {
 
 					<div className="absolute inset-0 flex items-end justify-end p-3 sm:p-4 xl:p-6">
 						<h2 className="text-2xl lg:text-3xl xl:text-4xl font-poppins text-white text-right leading-none">
-								50+<br /><span className="text-pink-300"></span>
+								100+<br /><span className="text-pink-300"></span>
 							</h2>
 						</div>
 					</div>
@@ -77,7 +83,7 @@ export default function Depoimentos() {
 							initial={{ opacity: 0, x: 30 }}
 							whileInView={{ opacity: 1, x: 0 }}
 							transition={{ duration: 0.5, delay: i * 0.1 }}
-							className="relative lg:flex-1 xl:flex-1 flex flex-col justify-between bg-pink-200 rounded-xl xl:rounded-2xl p-3 lg:p-3 xl:p-6 shadow-lg cursor-pointer hover:shadow-xl transition duration-300 transform-gpu hover:scale-[1.02] xl:hover:scale-105 group"
+							className="relative lg:flex-1 xl:flex-1 flex flex-col justify-between bg-pink-200 rounded-xl xl:rounded-2xl p-3 lg:p-3 xl:p-6 shadow-lg cursor-pointer hover:shadow-xl transition duration-300 transform-gpu hover:scale-[0.5] xl:hover:scale-105 group"
 						>
 							{/* Estrelas no topo */}
 							<div className="flex gap-0.5 mb-1.5 xl:mb-2">
@@ -96,12 +102,12 @@ export default function Depoimentos() {
 
 							{/* Footer com nome e cargo */}
 						<div className="flex items-center gap-2 xl:gap-2.5">
-							<div className="w-7 h-7 lg:w-8 lg:h-8 xl:w-9 xl:h-9 rounded-full bg-white/30 flex items-center justify-center text-pink-900 font-poppins font-bold text-xs">
-									{dep.nome.charAt(0)}
+							<div className="w-7 h-7 lg:w-8 lg:h-8 xl:w-9 xl:h-9 rounded-full overflow-hidden bg-white/30">
+									<img src={dep.foto} alt={dep.nome} className="w-full h-full object-cover" />
 								</div>
 								<div>
 								<p className="font-poppins font-semibold text-pink-900 text-[11px] lg:text-xs">{dep.nome}</p>
-								<p className="font-poppins text-pink-950 text-[10px] lg:text-[11px]">{dep.cargo}</p>
+								{/* <p className="font-poppins text-pink-950 text-[10px] lg:text-[11px]">{dep.cargo}</p> */}
 								</div>
 							</div>
 

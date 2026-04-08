@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Leaf, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useScroll } from "../contexts/ScrollContext";
+import logoVerde from "../assets/logoVerde.png";
 
 const navLinks = [
   { label: "Sobre mim", href: "#sobre" },
@@ -58,13 +59,13 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="w-full px-5 md:px-8 lg:px-14 xl:px-20 2xl:px-28 py-8 flex items-center justify-between">
+      <div className="w-full px-5 md:px-8 lg:px-14 xl:px-20 2xl:px-28 py-2 flex items-center justify-between">
         <a
           href="#inicio"
           onClick={(event) => handleNavigate(event, "#inicio")}
           className="flex items-center gap-2 group"
         >
-          <Leaf className="w-5 h-5 text-primary text-green-700 transition-transform group-hover:rotate-12" />
+          <img src={logoVerde} alt="Lory Cavalcante" className="h-14 w-auto transition-transform group-hover:scale-105" />
           {scrolled && <span className="font-raleway text-xl text-green-700 font-semibold tracking-tight text-foreground">
             Lory Cavalcante
           </span>}

@@ -8,7 +8,7 @@ import { Video } from 'lucide-react';
 
 
 import Mapa from "./Mapa";
-import escritorio from "../assets/escritorio.png";
+import consultorio from "../assets/consultorio.png";
 
 
 const socialItems = [
@@ -19,13 +19,13 @@ const socialItems = [
   },
   {
     icon: FaWhatsapp,
-    label: "(11) 99999-9999",
+    label: "(11) 91583-2334",
     href: "https://api.whatsapp.com/message/X3RQJTRTIKX5G1?autoload=1&app_absent=0&utm_source=ig",
   },
   {
     icon: MdOutlineMailOutline,
-    label: "lory@nutricionista.com",
-    href: "mailto:lory@nutricionista.com",
+    label: "lory@lcnutricao.com",
+    href: "mailto:lory@lcnutricao.com",
   },
 ];
 
@@ -54,10 +54,14 @@ function Contato() {
                     <h1 className="w-fit text-center font-poppins text-5xl transition duration-400 hover:text-green-700 lg:text-6xl">
                         Consultas
                     </h1>
-                    <p className="text-justify font-poppins transition duration-400 hover:text-green-700">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id
-                        magnam, ad voluptas praesentium, et quibusdam quis nesciunt. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id
-                        magnam, ad voluptas praesentium, et quibusdam quis nesciunt. Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                    <p className="text-sm sm:text-base text-justify font-poppins transition duration-400 hover:text-green-700">
+                        Se você sente que:<br/> 
+• Já tentou emagrecer e não conseguiu manter os resultados <br/> 
+• Tem dificuldade em ganhar massa muscular mesmo treinando <br/> 
+• Possui colesterol alto, pressão elevada ou risco de diabetes <br/> 
+• Vive com cansaço, baixa energia e sem constância <br/> 
+Saiba que o problema não é falta de esforço, é falta de direcionamento adequado, agende uma consulta comigo! 
+
                     </p>
                         <div className="flex flex-col lg:flex-row w-full gap-2 lg:gap-6 mt-4">
                             {[socialItems, infoItems].map((group, gi) => (
@@ -89,11 +93,11 @@ function Contato() {
                 </div>
 
                 <div className="group relative flex flex-col w-full lg:w-2/4 gap-4" data-scroll data-scroll-speed="2">
-                    <div className="w-full overflow-hidden rounded-xl bg-transparent p-3 shadow-gray-300/50 transition duration-500 hover:shadow-xl">
+                    <div className="w-full h-40 lg:h-96 overflow-hidden rounded-xl bg-transparent shadow-gray-300/50 transition duration-500 hover:shadow-xl">
                         <img
-                            src={escritorio}
+                            src={consultorio}
                             alt="Escritorio de atendimento"
-                            className="h-[24rem] w-full rounded-lg object-cover transition duration-500 hover:scale-105"
+                            className="h-full w-full rounded-lg object-cover transition duration-500 hover:scale-105"
                         />
                     </div>
                     <div className="relative h-48 w-full lg:absolute lg:-bottom-3 lg:-left-3 lg:z-20 lg:h-34 lg:w-76 overflow-hidden rounded-xl border border-green-300/80 shadow-xl transition-all duration-500 ease-in-out lg:hover:h-[26rem] lg:hover:w-[calc(100%-0.1rem)]">

@@ -39,8 +39,8 @@ export default function Landing() {
 				<div className="absolute inset-0 bg-gradient-to-r from-white/30 via-white/20 via-45% to-transparent"></div>
 				<div className="absolute inset-y-0 left-0 w-[58%] bg-[radial-gradient(circle_at_left_center,rgba(226, 205, 205, 0.9)_0%,rgba(70,28,28,0.62)_32%,rgba(70,28,28,0.18)_58%,transparent_85%)]"></div>
 			</div>
-			<div className="relative z-10 flex flex-col max-w-full md:max-w-4/10 px-6 md:pl-12 gap-5 sm:gap-0">
-				<div className="space-y-2 sm:-space-y-8">
+			<div className="relative z-10 flex flex-col max-w-full px-10 md:pl-12 gap-5 sm:gap-0">
+				<div className="space-y-4 sm:-space-y-8 md:max-w-4/10">
 					<h1
 						className="text-6xl sm:text-8xl text-left sm:text-center font-raleway text-shadow-sm text-shadow-black/40 font-light text-green-700 sm:text-green-700"
 						{...(!isMobile && { "data-scroll": true, "data-scroll-speed": "2" })}
@@ -55,17 +55,16 @@ export default function Landing() {
 					</h2>
 				</div>
 				<p
-					className="text-lg text-left md:text-justify font-roboto text-yellow-900 "
+					className="text-lg text-left md:text-justify md:max-w-4/10 font-roboto text-yellow-900 "
 					{...(!isMobile && { "data-scroll": true, "data-scroll-speed": "2" })}
 				>
-					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore
-					distinctio nostrum porro fugiat tenetur quaerat veritatis quam facere,
-					obcaecati tempora voluptatum omnis, neque nemo harum nesciunt libero?
-					Omnis, laborum maxime!
+					Emagreça, ganhe massa muscular e controle sua saúde com precisão científica.
+					<br />
+					Atendimento nutricional personalizado para adultos que buscam recomposição corporal, controle de doenças crônicas e alta performance física e metabólica. Aqui, cada conduta é baseada em ciência. 
 				</p>
 				<div
 					{...(!isMobile && { "data-scroll": true, "data-scroll-speed": "2" })}
-					className="flex flex-col sm:flex-row items-center sm:justify-center gap-6"
+				className="flex flex-col sm:flex-row items-center sm:justify-center gap-6 md:max-w-4/10"
 				>
 					<a
 						href="#contato"

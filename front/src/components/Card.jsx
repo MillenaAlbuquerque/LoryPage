@@ -9,22 +9,23 @@ import saladas from "../assets/saladas.jpg";
 const cardData = [
 	{
 		id: 1,
-		title: "Blueberry",
+		title: "Emagrecimento com preservação de massa muscular",
 		image: blueberry,
-		text: "Sou"
+		text: "O objetivo principal é garantir que a maior parte do peso perdido seja gordura corporal, preservando ao máximo a massa muscular. Para isso, não basta apenas reduzir calorias, é fundamental estruturar uma alimentação que sustente o metabolismo e preserve tecidos magros, com atenção especial ao aporte proteico. \nA manutenção da massa muscular é um fator-chave, não só para estética, mas também para saúde metabólica, gasto energético e prevenção do efeito rebote." 
+ 
 	}, {
 		id: 2,
-		title: "Frutas",
+		title: "Hipertrofia e melhora da composição corporal",
 		image: frutas,
-		text: "Sou"
+		text: "O processo de hipertrofia é gradual e exige consistência. Ajustes finos na alimentação e na rotina fazem toda a diferença especialmente no equilíbrio entre ingestão calórica, distribuição de nutrientes e suporte à síntese proteica. Seja para ganho de massa muscular ou recomposição corporal, o foco está em otimizar resultados com eficiência e sustentabilidade. "
 	}, {
 		id: 3,
-		title: "Frutas Fundo Amarelo",
+		title: "Controle de condições metabólicas",
 		image: frutasAmarelo,
 		text: "Sou"
 	}, {
 		id: 4,
-		title: "Salada",
+		title: "Reeducação alimentar",
 		image: saladas,
 		text: "Sou"
 	}
@@ -49,10 +50,15 @@ export default function Card() {
 							alt={card.title}
 							className="w-full object-cover transition duration-300 group-hover:scale-110"
 						/>
-						<div className="absolute inset-0 bg-opacity-0 hover:bg-black/60 transition duration-300 flex items-center justify-center">
-							<span className="text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition duration-300">
+						<div className="absolute inset-0 bg-opacity-0 hover:bg-black/60 transition duration-300 items-center justify-center hidden sm:flex">
+							<span className="text-white p-6 text-lg font-semibold opacity-0 group-hover:opacity-100 transition duration-300">
 								{card.title}
 							</span>
+						</div>
+						<div className="sm:hidden absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-2">
+							<p className="text-xs text-center text-white font-semibold">
+								{card.title}
+							</p>
 						</div>
 					</motion.div>
 				))}
@@ -65,7 +71,7 @@ export default function Card() {
 						onClick={() => setSelectedId(null)}
 					>
 						<motion.div
-							className="absolute inset-0 bg-black"
+							className="absolute inset-0 bg-black "
 							initial={{ opacity: 0 }}
 							animate={{ opacity: 0.3 }}
 							exit={{ opacity: 0 }}
@@ -73,14 +79,14 @@ export default function Card() {
 						/>
 						<motion.div
 							layoutId={`card-${selectedCard.id}`}
-							className="bg-white rounded-2xl z-10 w-96"
+							className="bg-white rounded-2xl z-10 w-11/12 max-w-lg"
 						>
 							<img
 								src={selectedCard.image}
 								alt={selectedCard.title}
-								className="w-full object-cover rounded-t-2xl"
+								className="w-full h-40 object-cover rounded-t-2xl"
 							/>
-							<p className="p-4">
+							<p className="p-4 whitespace-pre-line text-justify">
 								{selectedCard.text}
 							</p>
 						</motion.div>
