@@ -55,7 +55,7 @@ export default function Landing() {
 					</h2>
 				</div>
 				<p
-					className="text-lg text-left md:text-justify md:max-w-4/10 font-roboto text-yellow-900 "
+					className="text-sm  sm:text-base text-left md:text-justify md:max-w-4/10 font-roboto text-yellow-900 "
 					{...(!isMobile && { "data-scroll": true, "data-scroll-speed": "2" })}
 				>
 					Emagreça, ganhe massa muscular e controle sua saúde com precisão científica.
