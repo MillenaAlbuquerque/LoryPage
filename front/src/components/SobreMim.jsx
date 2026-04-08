@@ -1,4 +1,4 @@
-import lory from "../../src/assets/lory.jpeg";
+import lory from "../assets/Lory.jpeg";
 
 export default function SobreMim() {
 	return (
