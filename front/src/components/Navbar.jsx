@@ -54,7 +54,9 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
+        mobileOpen
+          ? "bg-green-50/95 backdrop-blur-sm"
+          : scrolled
           ? "justify-between px-2 items-center h-16 bg-white/10 backdrop-blur-sm"
           : "bg-transparent"
       }`}
@@ -89,7 +91,7 @@ export default function Navbar() {
           className="md:hidden text-foreground text-green-900 focus:outline-none"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
-          {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6 text-white" />}
+          {mobileOpen ? <X className="w-6 h-6 text-green-700" /> : <Menu className="w-6 h-6 text-white" />}
         </button>
       </div>
 

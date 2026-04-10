@@ -1,6 +1,10 @@
 import Card from "./Card"
+import { useScroll } from "../contexts/ScrollContext";
+
 
 function Especialidades() {
+    const { isMobile } = useScroll();
+
     return (
         <section data-scroll-section className="bg-cyan-50" id="especialidades">
             <div className="flex flex-col sm:flex-row gap-8 sm:gap-12 items-center justify-center min-h-screen px-6 sm:px-12 pt-8 sm:pt-0 pb-8 sm:pb-0">
@@ -30,7 +34,7 @@ Porque resultados consistentes não vêm de soluções rápidas, mas de estraté
                         data-scroll
                         data-scroll-speed="0"
                     >
-                        Veja ao lado meus serviços!
+                        {isMobile ? "Veja acima meus serviços!" : "Explore meus serviços!"}
                     </button>
                 </div>
                 <Card />

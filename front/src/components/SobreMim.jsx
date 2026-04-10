@@ -39,7 +39,7 @@ export default function SobreMim() {
 						className="font-poppins bg-amber-200 text-amber-700 shadow-lg px-8 py-2 text-lg cursor-pointer rounded-xl w-fit self-center
                                     hover:bg-amber-900 hover:text-white   hover:scale-105 transition duration-300 "
 						data-scroll
-						data-scroll-speed="0"
+						data-scroll-speed="0" onClick={() => window.open("https://cfn.org.br/consulta-nacional-de-nutricionistas/", "_blank")}
 					>
 						CRN-3 84882
 					</button>

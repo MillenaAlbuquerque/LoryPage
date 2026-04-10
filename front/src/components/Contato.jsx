@@ -24,8 +24,8 @@ const socialItems = [
   },
   {
     icon: MdOutlineMailOutline,
-    label: "lory@lcnutricao.com",
-    href: "mailto:lory@lcnutricao.com",
+    label: "lory@lcnutricao.com.br",
+    href: "mailto:lory@lcnutricao.com.br",
   },
 ];
 
@@ -33,12 +33,10 @@ const infoItems = [
   {
     icon: FaRegClock,
     label: "Segunda a Sábado, 8h às 18h",
-    href: "#",
   },
   {
     icon: Video,
     label: "Presencial ou Online",
-    href: "#",
   },
 ];
 
@@ -100,7 +98,7 @@ Saiba que o problema não é falta de esforço, é falta de direcionamento adequ
                             className="h-full w-full rounded-lg object-cover transition duration-500 hover:scale-105"
                         />
                     </div>
-                    <div className="relative h-48 w-full lg:absolute lg:-bottom-3 lg:-left-3 lg:z-20 lg:h-34 lg:w-76 overflow-hidden rounded-xl border border-green-300/80 shadow-xl transition-all duration-500 ease-in-out lg:hover:h-[26rem] lg:hover:w-[calc(100%-0.1rem)]">
+                    <div className="relative h-58 w-full lg:absolute lg:-bottom-20 lg:-left-6 lg:z-20 lg:h-44 lg:w-76 overflow-hidden rounded-xl border border-green-300/80 shadow-xl transition-all duration-500 ease-in-out lg:hover:h-[29rem] lg:hover:w-[calc(100%+2rem)]">
                         <Mapa className="h-full w-full" />
                     </div>
                 </div>
