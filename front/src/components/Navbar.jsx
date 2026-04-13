@@ -91,7 +91,7 @@ export default function Navbar() {
           className="md:hidden text-foreground text-green-900 focus:outline-none"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
-          {mobileOpen ? <X className="w-6 h-6 text-green-700" /> : <Menu className="w-6 h-6 text-white" />}
+          {mobileOpen ? <X className="w-6 h-6 text-green-700" /> : <Menu className={`w-6 h-6 ${scrolled ? 'text-green-700' : 'text-white'}`} />}
         </button>
       </div>
 

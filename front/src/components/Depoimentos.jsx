@@ -12,7 +12,7 @@ const depoimentos = [
 		foto: fotoTatiana,
 		nome: "Tatiana Cristina da Silva Damásio Souza",
 		texto:
-			"Lory, na verdade eu queria te agradecer por estar vivendo essa experência de novos hábitos. A gente reclama no começo, mas quando vê resultados vindo, metas batidas, e aprendendo a se alimentar de verdade e virando uma rotina, é gratificante. Estou amando esse processo!",
+			"Agradeço a Lory por estar vivendo essa experência de novos hábitos. A gente reclama no começo, mas quando vê resultados vindo, metas batidas, e aprendendo a se alimentar de verdade e virando uma rotina, é gratificante. Estou amando esse processo!",
 		estrelas: 5,
 		cargo: "Advogada e paciente há 2 anos",
 	},
@@ -39,7 +39,7 @@ const depoimentos = [
 export default function Depoimentos() {
 	return (
 		<section data-scroll-section className="bg-pink-50 overflow-hidden md:max-h-[65vh] lg:max-h-[60vh] xl:max-h-none" id="depoimentos">
-			<div className="flex flex-col md:grid md:grid-cols-[5fr_7fr] px-2 sm:px-4 lg:px-6 xl:px-10 py-6 sm:py-8 md:py-6 lg:py-4 xl:py-10 gap-3 lg:gap-4 xl:gap-4 w-full max-w-7xl mx-auto">
+			<div className="flex flex-col md:grid md:grid-cols-[5fr_7fr] px-5 sm:px-4 lg:px-6 xl:px-10 py-6 sm:py-8 md:py-6 lg:py-4 xl:py-10 gap-3 lg:gap-4 xl:gap-4 w-full max-w-7xl mx-auto">
 				{/* Esquerda: Título e área para foto */}
 				<div className="w-full relative flex flex-col">
 					{/* Espaço para foto com título sobreposto */}

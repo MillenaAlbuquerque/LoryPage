@@ -6,7 +6,7 @@ import logoClara from "../assets/logoClara.png";
 export default function Footer() {
 	return (
 		<footer data-scroll-section className="bg-emerald-800">
-            <div className="mx-auto flex w-full max-w-8xl flex-col items-center justify-between gap-3 px-12 py-1 text-center text-pink-900 md:flex-row md:text-left">
+            <div className="mx-auto flex w-full max-w-8xl flex-col items-center justify-between gap-3 px-4 py-2 text-center text-pink-900 md:flex-row md:text-left md:px-12 md:py-1">
                 <div className="flex items-center gap-2">
 					<img src={logoClara} alt="Lory Cavalcante" className="h-14 w-auto transition-transform group-hover:scale-105" />
 					<span className="font-raleway text-xl text-white font-semibold">

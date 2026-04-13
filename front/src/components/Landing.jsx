@@ -24,16 +24,18 @@ export default function Landing() {
 			id="inicio"
 			className="relative h-dvh w-dvw flex flex-col justify-center overflow-hidden"
 		>
-			<div className={`${isMobile ? "absolute inset-0" : "fixed -inset-8"} overflow-hidden`}>
+			<div className="absolute inset-0 sm:fixed sm:-inset-8 overflow-hidden">
 				<img
 					src={fundoMobile}
 					className="sm:hidden h-full w-full object-cover object-center scale-100 brightness-80"
-					{...(!isMobile && { "data-scroll": true, "data-scroll-speed": "-8" })}
+					data-scroll
+					data-scroll-speed="-8"
 				></img>
 				<img
 					src={fundo}
 					className="hidden sm:block h-full w-full object-cover object-center scale-100 brightness-90"
-					{...(!isMobile && { "data-scroll": true, "data-scroll-speed": "-8" })}
+					data-scroll
+					data-scroll-speed="-8"
 				></img>
 				<div className="absolute inset-0 bg-white/[0.02] backdrop-blur-[0.5px]"></div>
 				<div className="absolute inset-0 bg-gradient-to-r from-white/30 via-white/20 via-45% to-transparent"></div>
