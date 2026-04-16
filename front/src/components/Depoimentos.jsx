@@ -57,7 +57,7 @@ export default function Depoimentos() {
 						
 					<div className="absolute -top-2 -left-2 z-10 h-11 md:h-10 xl:h-12 w-[13rem] md:w-[12rem] xl:w-[15rem] bg-pink-50 rounded-br-2xl"></div>
 					<div className="absolute top-0 left-0 z-20">
-						<h2 className="relative text-2xl md:text-2xl xl:text-3xl leading-none font-poppins text-pink-700 bg-pink-50 px-2 lg:px-3 py-1.5 rounded-br-2xl">
+						<h2 className="relative text-3xl md:text-2xl xl:text-5xl leading-none font-poppins text-pink-700 bg-pink-50 px-2 lg:px-3 py-1.5 rounded-br-2xl">
 								Depoimentos
 							</h2>
 						</div>

@@ -22,7 +22,8 @@ export default function Landing() {
 		<section
 			data-scroll-section
 			id="inicio"
-			className="relative h-dvh w-dvw flex flex-col justify-center overflow-hidden"
+			className="relative w-dvw flex flex-col justify-center overflow-hidden"
+			style={{ height: 'calc(var(--vh, 1dvh) * 100)' }}
 		>
 			<div className="absolute inset-0 sm:fixed sm:-inset-8 overflow-hidden">
 				<img

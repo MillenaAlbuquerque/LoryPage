@@ -40,7 +40,7 @@ const infoItems = [
   },
 ];
 
-function Contato() {
+function Contato({ onAgendarClick }) {
     return (
         <section data-scroll-section className="bg-green-50" id="contato">
             <div className="flex flex-col lg:flex-row h-auto lg:h-screen items-center justify-center gap-6 lg:gap-10 px-6 lg:px-8 py-12 lg:py-0">
@@ -83,7 +83,17 @@ Saiba que o problema não é falta de esforço, é falta de direcionamento adequ
                                     ))}
                                 </div>
                             ))}
+                            
                         </div>
+                        <button
+                        type="button"
+                        onClick={onAgendarClick}
+                        className="font-poppins bg-[#B9F7CE] text-green-900 shadow-lg px-8 py-2 text-lg cursor-pointer rounded-xl w-fit self-center hover:bg-green-900 hover:text-white hover:scale-105 transition duration-300"
+                        data-scroll
+                        data-scroll-speed="0"
+                    >
+                        Agendar Consulta
+                    </button>
 
                         {/* <div className="absolute -right-8 -bottom-5 z-20 h-40 w-70 overflow-hidden rounded-xl border border-pink-300/80 shadow-2xl transition-all duration-500 ease-in-out group-hover:h-44 group-hover:w-100">
                             <Mapa className="h-full w-full" />

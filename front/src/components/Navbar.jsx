@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Leaf, Menu, X } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useScroll } from "../contexts/ScrollContext";
 import logoVerde from "../assets/logoVerde.png";
@@ -8,28 +9,38 @@ const navLinks = [
   { label: "Sobre mim", href: "#sobre" },
   { label: "Especialidades", href: "#especialidades" },
   { label: "Depoimentos", href: "#depoimentos" },
-  { label: "Agende sua consulta", href: "#contato" },
+  { label: "Agende sua consulta", href: "/agendamento" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { scroll } = useScroll();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isAgendamentoPage = location.pathname === "/agendamento";
 
   const handleNavigate = (event, href, closeMobile = false) => {
-    if (!href?.startsWith("#")) return;
-
-    event.preventDefault();
-    const target = document.querySelector(href);
-
-    if (target && scroll) {
-      scroll.scrollTo(target, { offset: -24, duration: 900 });
-    } else if (target) {
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-
-    if (closeMobile) {
-      setMobileOpen(false);
+    if (href?.startsWith("#")) {
+      event.preventDefault();
+      if (closeMobile) setMobileOpen(false);
+      if (isAgendamentoPage) {
+        setTimeout(() => navigate("/" + href), closeMobile ? 350 : 0);
+      } else {
+        const delay = closeMobile ? 350 : 0;
+        setTimeout(() => {
+          const target = document.querySelector(href);
+          if (target && scroll) {
+            scroll.scrollTo(target, { offset: -24, duration: 900 });
+          } else if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }, delay);
+      }
+    } else if (href?.startsWith("/")) {
+      event.preventDefault();
+      if (closeMobile) setMobileOpen(false);
+      navigate(href);
     }
   };
 
@@ -53,11 +64,15 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`${
+        isAgendamentoPage ? "relative" : "fixed top-0 left-0 right-0 z-50"
+      } transition-all duration-500 ${
         mobileOpen
-          ? "bg-green-50/95 backdrop-blur-sm"
+          ? "bg-green-50 backdrop-blur-sm"
           : scrolled
           ? "justify-between px-2 items-center h-16 bg-white/10 backdrop-blur-sm"
+          : isAgendamentoPage
+          ? "bg-green-50"
           : "bg-transparent"
       }`}
     >
@@ -79,7 +94,11 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               onClick={(event) => handleNavigate(event, link.href)}
-              className={`text-sm font-poppins font-medium transition-colors hover:text-gray-300 ${scrolled ? 'text-green-700' : 'text-white'}`}
+              className={`text-sm font-poppins font-medium transition-colors ${
+                isAgendamentoPage
+                  ? 'text-green-900 hover:text-green-700'
+                  : `${scrolled ? 'text-green-700' : 'text-white'} hover:text-gray-300`
+              }`}
             >
               {link.label}
             </a>
@@ -88,10 +107,10 @@ export default function Navbar() {
         </div>
 
         <button
-          className="md:hidden text-foreground text-green-900 focus:outline-none"
+          className="md:hidden focus:outline-none"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
-          {mobileOpen ? <X className="w-6 h-6 text-green-700" /> : <Menu className={`w-6 h-6 ${scrolled ? 'text-green-700' : 'text-white'}`} />}
+          {mobileOpen ? <X className={`w-6 h-6 ${isAgendamentoPage || scrolled ? 'text-green-700' : 'text-white'}`} /> : <Menu className={`w-6 h-6 ${isAgendamentoPage || scrolled ? 'text-green-700' : 'text-white'}`} />}
         </button>
       </div>
 
@@ -105,14 +124,17 @@ export default function Navbar() {
           >
             <div className="flex flex-col px-6 py-4 gap-4">
               {navLinks.map((link) => (
-                <a
+                <button
                   key={link.href}
-                  href={link.href}
                   onClick={(event) => handleNavigate(event, link.href, true)}
-                  className="text-base font-medium text-foreground hover:text-primary transition-colors"
+                  className={`text-base font-medium transition-colors font-poppins text-left ${
+                    isAgendamentoPage
+                      ? 'text-green-700 hover:text-green-900'
+                      : 'text-foreground hover:text-primary'
+                  }`}
                 >
                   {link.label}
-                </a>
+                </button>
               ))}
               
             </div>
