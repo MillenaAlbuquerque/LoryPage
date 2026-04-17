@@ -17,10 +17,10 @@ function Especialidades() {
                         <h1 className="text-3xl sm:text-6xl text-center font-poppins transition duration-400 hover:text-cyan-700 w-fit">
                             Minhas especialidades
                         </h1>
-                        <p className="text-sm sm:text-base text-justify font-poppins transition duration-400 hover:text-cyan-700">
+                        <p className="text-sm sm:text-base  font-poppins transition duration-400 hover:text-cyan-700">
                             Sei que a nutrição é uma ferramenta essencial não apenas para transformação estética, mas principalmente como base para prevenção de doenças e promoção de saúde a longo prazo. 
                         </p>
-                        <p className="text-sm  sm:text-base text-justify font-poppins transition duration-400 hover:text-cyan-700">
+                        <p className="text-sm  sm:text-base font-poppins transition duration-400 hover:text-cyan-700">
                             Mais do que seguir um plano, você aprende a se alimentar com consciência, estratégia e liberdade. 
  
 Sem extremismos, sem terrorismo nutricional, apenas ciência aplicada de forma prática, sustentável e alinhada à sua rotina. 

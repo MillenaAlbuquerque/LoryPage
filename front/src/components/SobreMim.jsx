@@ -3,7 +3,7 @@ import lory from "../assets/Lory.jpeg";
 export default function SobreMim() {
 	return (
 		<section data-scroll-section className="bg-amber-50 text-slate-200" id="sobre">
-			<div className="flex flex-col sm:flex-row h-auto sm:h-[110vh] w-dvw px-6 sm:px-12 items-center justify-around gap-8 sm:gap-0 pb-12 sm:pb-0">
+			<div className="flex flex-col sm:flex-row h-auto sm:h-[110vh] w-dvw px-6 sm:px-12 items-center justify-around gap-8 sm:gap-0 pb-12 sm:pb-0 xl:px-6">
 				<a
 					className="h-full items-center flex cursor-default"
 					href="https://www.instagram.com/lorycavalcantenutri/"
@@ -26,13 +26,11 @@ export default function SobreMim() {
 						<h1 className="text-3xl sm:text-6xl text-center font-poppins transition duration-400 hover:text-amber-700 w-fit">
 							Sobre mim
 						</h1>
-						<p className="text-sm sm:text-base text-justify font-poppins transition duration-400 hover:text-amber-700">
-							Sou nutricionista clínica, com atuação voltada ao atendimento de adultos que buscam recomposição corporal, reeducação alimentar e melhora da saúde metabólica. <br />Graduada pela Universidade de Guarulhos (UnG) em 2024, conduzo meus atendimentos com base em ciência, individualidade biológica e aplicação prática no dia a dia.
-						
-						<br/>
-						
-							Meu trabalho vai além de prescrever dietas.
-							É um acompanhamento personalizado, que considera suas individualidades e rotina, respeitando sua realidade, para que os resultados sejam não apenas alcançados, mas mantidos.
+						<p lang="pt-BR" className="text-sm sm:text-base font-poppins text-pretty transition duration-400 hover:text-amber-700">
+							Sou nutricionista clínica, com atuação voltada ao atendimento de adultos que buscam recomposição corporal, reeducação alimentar e melhora da saúde metabólica. Graduada pela Universidade de Guarulhos (UnG) em 2024, conduzo meus atendimentos com base em ciência, individualidade biológica e aplicação prática no dia a dia.
+						</p>
+						<p lang="pt-BR" className="text-sm sm:text-base font-poppins text-pretty transition duration-400 hover:text-amber-700">
+							Meu trabalho vai além de prescrever dietas. É um acompanhamento personalizado, que considera suas individualidades e rotina, respeitando sua realidade, para que os resultados sejam não apenas alcançados, mas mantidos.
 						</p>
 					</div>
 					<button

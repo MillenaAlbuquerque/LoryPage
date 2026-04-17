@@ -9,10 +9,6 @@ import { toast } from "react-toastify";
 
 const TIME_SLOTS = ["08:00", "09:00", "10:00", "11:00", "13:00", "14:00", "15:00", "16:00", "17:00"];
 
-const SERVICES = [
-  { id: "primeira", label: "Primeira Consulta", duration: "60 min" },
-  { id: "online", label: "Consulta Online", duration: "45 min" },
-];
 
 function buildCalendarDays(currentMonth) {
   const start = startOfMonth(currentMonth);
@@ -27,10 +23,9 @@ export default function Agendamento() {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
-  const [selectedService, setSelectedService] = useState(SERVICES[0]);
   const [step, setStep] = useState("calendar"); 
   const [mobileStep, setMobileStep] = useState("form"); 
-  const [form, setForm] = useState({ name: "", email: "", phone: "", notes: "", online: false });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", online: false });
   const [loading, setLoading] = useState(false);
   const [availableSlots, setAvailableSlots] = useState({}); 
 
@@ -66,7 +61,7 @@ export default function Agendamento() {
 
   const handleConfirm = () => {
     if (!selectedDate || !selectedTime) return;
-    if (!form.name.trim() || !form.email.trim()) {
+    if (!form.name.trim() || !form.email.trim() || !form.phone.trim()) {
       toast.error("Por favor, preencha todos os campos obrigatórios (nome, email e telefone) antes de confirmar.");
       return;
     }
@@ -81,8 +76,9 @@ export default function Agendamento() {
         hora: selectedTime,
         nome: form.name,
         email: form.email,
+        phone: form.phone,
         online: form.online,
-        duracao: Number(selectedService.duration.replace(/\D/g, "")),
+        duracao: form.online ? 45 : 60,
       });
       if (mobileStep !== "form") {
         // Mobile flow
@@ -359,7 +355,7 @@ export default function Agendamento() {
                   setMobileStep("form");
                   setSelectedDate(null);
                   setSelectedTime(null);
-                  setForm({ name: "", email: "", phone: "", notes: "" });
+                  setForm({ name: "", email: "", phone: "", online: false });
                 }}
                 className="font-poppins bg-[#B9F7CE] text-green-900 shadow-lg px-8 py-2 text-lg cursor-pointer rounded-xl w-fit self-center hover:bg-green-900 hover:text-white hover:scale-105 transition duration-300"
               >
@@ -469,7 +465,7 @@ export default function Agendamento() {
 
                 <div className="grid grid-cols-7 mb-2">
                   {weekDays.map((d) => (
-                    <div key={d} className="text-center text-xs font-medium text-gray-600 py-1 font-poppins">
+                    <div key={d} className="text-center text-xs font-medium text-green-800 py-1 font-poppins">
                       {d}
                     </div>
                   ))}
@@ -705,7 +701,7 @@ export default function Agendamento() {
                 setMobileStep("form");
                 setSelectedDate(null);
                 setSelectedTime(null);
-                setForm({ name: "", email: "", phone: "", notes: "" });
+                setForm({ name: "", email: "", phone: ""});
               }}
               className="font-poppins bg-[#B9F7CE] text-green-900 shadow-lg px-8 py-2 text-lg cursor-pointer rounded-xl w-fit self-center hover:bg-green-900 hover:text-white hover:scale-105 transition duration-300"
             >

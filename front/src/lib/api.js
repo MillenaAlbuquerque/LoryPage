@@ -107,10 +107,10 @@ const makeAuthenticatedRequest = async (url, options = {}) => {
   return response;
 };
 
-export const bookAppointment = async ({ data, hora, nome, email, online, duracao }) => {
+export const bookAppointment = async ({ data, hora, nome, email, online, phone, duracao }) => {
   const response = await makeAuthenticatedRequest(`${BASE_URL}/agendar`, {
     method: "POST",
-    body: JSON.stringify({ data, hora, nome, email, online, duracao }),
+    body: JSON.stringify({ data, hora, nome, email, online, phone, duracao }),
   });
 
   const payload = await response.json();

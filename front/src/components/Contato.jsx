@@ -52,7 +52,7 @@ function Contato({ onAgendarClick }) {
                     <h1 className="w-fit text-center font-poppins text-5xl transition duration-400 hover:text-green-700 lg:text-6xl">
                         Consultas
                     </h1>
-                    <p className="text-sm sm:text-base text-justify font-poppins transition duration-400 hover:text-green-700">
+                    <p className="text-sm sm:text-base  font-poppins transition duration-400 hover:text-green-700">
                         Se você sente que:<br/> 
 • Já tentou emagrecer e não conseguiu manter os resultados <br/> 
 • Tem dificuldade em ganhar massa muscular mesmo treinando <br/> 
@@ -61,34 +61,46 @@ function Contato({ onAgendarClick }) {
 Saiba que o problema não é falta de esforço, é falta de direcionamento adequado, agende uma consulta comigo! 
 
                     </p>
-                        <div className="flex flex-col lg:flex-row w-full gap-2 lg:gap-6 mt-4">
-                            {[socialItems, infoItems].map((group, gi) => (
-                                <div key={gi} className="flex flex-1 flex-col gap-4">
-                                    {group.map((item, index) => (
-                                        <a
-                                            key={index}
-                                            href={item.href}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="group/item flex items-center gap-2 py-2 transition-colors  duration-300 rounded-full hover:bg-green-200/80 px-3"
-                                            aria-label={item.label}
-                                        >
-                                            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#B9F7CE] text-green-900 transition-colors group-hover/item:text-green-700">
-                                                <item.icon className="h-6 w-5" />
-                                            </div>
-                                            <span className="text-sm font-medium text-green-900 transition-colors group-hover/item:text-green-700">
-                                                {item.label}
-                                            </span>
-                                        </a>
-                                    ))}
-                                </div>
-                            ))}
-                            
+                        <div className="flex flex-col lg:flex-row w-full gap-3 lg:gap-6 mt-4">
+                            <div className="flex flex-1 flex-col gap-3">
+                                {socialItems.map((item, index) => (
+                                    <a
+                                        key={index}
+                                        href={item.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="group/item flex items-center gap-3 py-2 px-3 transition-colors duration-300 rounded-full hover:bg-green-200/80"
+                                        aria-label={item.label}
+                                    >
+                                        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#B9F7CE] text-green-900 transition-colors group-hover/item:text-green-700">
+                                            <item.icon className="h-5 w-5" />
+                                        </div>
+                                        <span className="text-sm font-medium text-green-900 transition-colors group-hover/item:text-green-700">
+                                            {item.label}
+                                        </span>
+                                    </a>
+                                ))}
+                            </div>
+                            <div className="flex flex-1 flex-col gap-3">
+                                {infoItems.map((item, index) => (
+                                    <div
+                                        key={index}
+                                        className="flex items-center gap-3 py-2 px-3 rounded-full"
+                                    >
+                                        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#B9F7CE] text-green-900">
+                                            <item.icon className="h-5 w-5" />
+                                        </div>
+                                        <span className="text-sm font-medium text-green-900">
+                                            {item.label}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                         <button
                         type="button"
                         onClick={onAgendarClick}
-                        className="font-poppins bg-[#B9F7CE] text-green-900 shadow-lg px-8 py-2 text-lg cursor-pointer rounded-xl w-fit self-center hover:bg-green-900 hover:text-white hover:scale-105 transition duration-300"
+                        className="font-poppins mt-4 bg-[#B9F7CE] text-green-900 shadow-lg px-8 py-2 text-lg cursor-pointer rounded-xl w-fit self-center hover:bg-green-900 hover:text-white hover:scale-105 transition duration-300"
                         data-scroll
                         data-scroll-speed="0"
                     >
