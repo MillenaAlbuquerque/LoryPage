@@ -43,7 +43,7 @@ const infoItems = [
 function Contato({ onAgendarClick }) {
     return (
         <section data-scroll-section className="bg-green-50" id="contato">
-            <div className="flex flex-col lg:flex-row h-auto lg:h-screen items-center justify-center gap-6 lg:gap-10 px-6 lg:px-8 py-12 lg:py-0">
+            <div className="flex flex-col lg:flex-row h-auto lg:h-screen items-center justify-center gap-6 lg:gap-10 px-6 lg:px-8 py-12 lg:py-0 max-w-7xl mx-auto w-full">
                 <div
                     className="w-full lg:w-1/2 flex flex-col space-y-2 p-4 text-green-900"
                     data-scroll

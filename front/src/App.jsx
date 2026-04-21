@@ -16,7 +16,6 @@ function HashScroller() {
 	const location = useLocation();
 	const { scroll } = useScroll();
 
-	// Update locomotive scroll on every route change so it remeasures the new DOM
 	useEffect(() => {
 		if (!scroll) return;
 		const timer = setTimeout(() => {
@@ -26,7 +25,6 @@ function HashScroller() {
 		return () => clearTimeout(timer);
 	}, [location.pathname, scroll]);
 
-	// Handle hash scrolling — wait for pathname reset (100ms) before starting
 	useEffect(() => {
 		if (!location.hash) return;
 		const id = location.hash.slice(1);
@@ -45,7 +43,6 @@ function HashScroller() {
 				setTimeout(() => tryScroll(attempts + 1), 150);
 			}
 		};
-		// 500ms: espera o menu fechar (350ms) + reset do pathname (100ms)
 		setTimeout(() => tryScroll(), 500);
 	}, [location.hash, location.pathname, scroll]);
 

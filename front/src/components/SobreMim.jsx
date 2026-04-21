@@ -3,7 +3,7 @@ import lory from "../assets/Lory.jpeg";
 export default function SobreMim() {
 	return (
 		<section data-scroll-section className="bg-amber-50 text-slate-200" id="sobre">
-			<div className="flex flex-col sm:flex-row h-auto sm:h-[110vh] w-dvw px-6 sm:px-12 items-center justify-around gap-8 sm:gap-0 pb-12 sm:pb-0 xl:px-6">
+			<div className="flex flex-col sm:flex-row h-auto sm:h-[110vh] w-full max-w-7xl mx-auto px-6 sm:px-12 items-center justify-around gap-8 sm:gap-0 pb-12 sm:pb-0 xl:px-6">
 				<a
 					className="h-full items-center flex cursor-default"
 					href="https://www.instagram.com/lorycavalcantenutri/"

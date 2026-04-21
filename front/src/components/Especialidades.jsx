@@ -7,7 +7,7 @@ function Especialidades() {
 
     return (
         <section data-scroll-section className="bg-cyan-50" id="especialidades">
-            <div className="flex flex-col sm:flex-row gap-8 sm:gap-12 items-center justify-center min-h-screen px-6 sm:px-12 pt-8 sm:pt-0 pb-8 sm:pb-0">
+            <div className="flex flex-col sm:flex-row gap-8 sm:gap-12 items-center justify-center min-h-screen px-6 sm:px-12 pt-8 sm:pt-0 pb-8 sm:pb-0 max-w-7xl mx-auto w-full">
                 <div className="w-full sm:w-1/2 flex flex-col space-y-6 sm:space-y-12">
                     <div
                         className="flex flex-col items-center bg-cyan-200 p-6 rounded-xl shadow-xl text-cyan-900 space-y-4"

@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { format, addMonths, subMonths, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, isBefore, startOfDay, getDay } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { ChevronLeft, ChevronRight, Clock, Leaf, MapPin, Video, User,Mail,Phone, CheckCircle2 } from "lucide-react";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { bookAppointment, getAvailableSlots } from "../lib/api";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import lottieLoading from "../assets/Run Forrest Run.lottie";
 
 const TIME_SLOTS = ["08:00", "09:00", "10:00", "11:00", "13:00", "14:00", "15:00", "16:00", "17:00"];
 
@@ -27,13 +30,15 @@ export default function Agendamento() {
   const [mobileStep, setMobileStep] = useState("form"); 
   const [form, setForm] = useState({ name: "", email: "", phone: "", online: false });
   const [loading, setLoading] = useState(false);
-  const [availableSlots, setAvailableSlots] = useState({}); 
+  const [availableSlots, setAvailableSlots] = useState({});
+  const [slotsLoading, setSlotsLoading] = useState(true);
 
   const { days, prefixDays } = buildCalendarDays(currentMonth);
   const today = startOfDay(new Date());
 
   useEffect(() => {
     const fetchSlots = async () => {
+      setSlotsLoading(true);
       try {
         const slots = await getAvailableSlots();
         const slotsMap = {};
@@ -44,6 +49,8 @@ export default function Agendamento() {
       } catch (error) {
         console.error("Erro ao buscar horários disponíveis:", error);
         setAvailableSlots({});
+      } finally {
+        setSlotsLoading(false);
       }
     };
     fetchSlots();
@@ -123,7 +130,13 @@ export default function Agendamento() {
   };
 
   return (
-    <div className="bg-white rounded-3xl" style={{ boxShadow: ' 8px 12px rgba(77, 77, 77, 0.12)' }}>
+    <div className="relative bg-white rounded-3xl" style={{ boxShadow: ' 8px 12px rgba(77, 77, 77, 0.12)' }}>
+      {(slotsLoading || loading) && createPortal(
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/30 backdrop-blur-[2px]">
+          <DotLottieReact src={lottieLoading} loop autoplay style={{ width: 180, height: 180 }} />
+        </div>,
+        document.body
+      )}
       <div className="w-full max-w-8xl bg-white rounded-3xl overflow-hidden">
 
         <div className="relative">
@@ -446,10 +459,7 @@ export default function Agendamento() {
                 </h2>
 
                 <div className="flex items-center justify-between mb-6">
-                  <button
-                    onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}
-                    className="p-1.5 rounded-lg hover:bg-green-200 transition-colors"
-                  >
+                  <button onClick={() => setCurrentMonth(subMonths(currentMonth, 1))} className="p-1.5 rounded-lg hover:bg-green-200 transition-colors">
                     <ChevronLeft className="w-4 h-4 text-foreground" />
                   </button>
                   <span className="font-poppins font-medium text-sm text-foreground capitalize">
