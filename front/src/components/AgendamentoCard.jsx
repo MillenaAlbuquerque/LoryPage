@@ -9,9 +9,19 @@ import { bookAppointment, getAvailableSlots } from "../lib/api";
 import { useNavigate } from "react-router-dom";
 import { useScroll } from "../contexts/ScrollContext";
 import { toast } from "react-toastify";
-import lottieLoading from "../assets/Run Forrest Run.lottie";
+import lottieLoading from "../assets/Food Loading Animation.lottie";
 
 const TIME_SLOTS = ["08:00", "09:00", "10:00", "11:00", "13:00", "14:00", "15:00", "16:00", "17:00"];
+
+function filterPastTimes(times, date, today) {
+  if (!isSameDay(date, today)) return times;
+  const now = new Date();
+  const nowPlus30 = now.getHours() * 60 + now.getMinutes() + 30;
+  return times.filter(time => {
+    const [h, m] = time.split(":").map(Number);
+    return h * 60 + m > nowPlus30;
+  });
+}
 
 
 function buildCalendarDays(currentMonth) {
@@ -302,7 +312,8 @@ export default function Agendamento() {
                   <div className="grid grid-cols-2 gap-2">
                     {(() => {
                       const dateKey = format(selectedDate, "yyyy-MM-dd");
-                      const availableTimes = availableSlots[dateKey] ? availableSlots[dateKey] : TIME_SLOTS;
+                      const rawTimes = availableSlots[dateKey] ? availableSlots[dateKey] : TIME_SLOTS;
+                      const availableTimes = filterPastTimes(rawTimes, selectedDate, today);
                       return availableTimes.map((time) => (
                         <button
                           key={time}
@@ -526,7 +537,8 @@ export default function Agendamento() {
                     <div className="flex-1 overflow-y-auto space-y-2 pr-1">
                       {(() => {
                         const dateKey = selectedDate ? format(selectedDate, "yyyy-MM-dd") : null;
-                        const availableTimes = dateKey && availableSlots[dateKey] ? availableSlots[dateKey] : TIME_SLOTS;
+                        const rawTimes = dateKey && availableSlots[dateKey] ? availableSlots[dateKey] : TIME_SLOTS;
+                        const availableTimes = filterPastTimes(rawTimes, selectedDate, today);
                         return availableTimes.map((time) => (
                           <div key={time} className="flex gap-2">
                             <button
