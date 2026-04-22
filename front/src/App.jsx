@@ -1,5 +1,5 @@
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Navbar from "./components/Navbar";
@@ -15,35 +15,50 @@ import Agendamento from "./pages/Agendamento";
 function HashScroller() {
 	const location = useLocation();
 	const { scroll } = useScroll();
+	const prevPathnameRef = useRef(location.pathname);
 
+	// Reseta scroll ao topo apenas quando muda de página (não quando scroll inicializa)
+	// e apenas quando não há hash (o hash scroll cuida do posicionamento)
 	useEffect(() => {
-		if (!scroll) return;
-		const timer = setTimeout(() => {
-			scroll.scrollTo(0, { duration: 0, disableLerp: true });
-			scroll.update();
-		}, 100);
-		return () => clearTimeout(timer);
-	}, [location.pathname, scroll]);
+		const prev = prevPathnameRef.current;
+		prevPathnameRef.current = location.pathname;
 
+		// Ignora: mesma página (mudança de hash) ou scroll inicializando
+		if (prev === location.pathname) return;
+		// Se tem hash, deixa o efeito de hash cuidar (inclui reset implícito via update)
+		if (location.hash) return;
+		if (!scroll) return;
+
+		scroll.scrollTo(0, { duration: 0, disableLerp: true });
+		scroll.update();
+	}, [location.pathname, location.hash, scroll]);
+
+	// Scroll para a seção do hash
 	useEffect(() => {
 		if (!location.hash) return;
 		const id = location.hash.slice(1);
+
 		const tryScroll = (attempts = 0) => {
 			const target = document.getElementById(id);
 			if (target) {
 				if (scroll) {
+					// Reseta ao topo primeiro para garantir posição limpa
+					scroll.scrollTo(0, { duration: 0, disableLerp: true });
 					scroll.update();
+					// Aguarda o locomotive recalcular antes de animar
 					setTimeout(() => {
 						scroll.scrollTo(target, { offset: -24, duration: 900 });
-					}, 150);
+					}, 400);
 				} else {
 					target.scrollIntoView({ behavior: "smooth", block: "start" });
 				}
-			} else if (attempts < 15) {
+			} else if (attempts < 20) {
 				setTimeout(() => tryScroll(attempts + 1), 150);
 			}
 		};
-		setTimeout(() => tryScroll(), 500);
+
+		const timer = setTimeout(() => tryScroll(), 500);
+		return () => clearTimeout(timer);
 	}, [location.hash, location.pathname, scroll]);
 
 	return null;

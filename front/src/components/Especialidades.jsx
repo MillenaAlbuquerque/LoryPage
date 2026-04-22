@@ -12,7 +12,7 @@ function Especialidades() {
                     <div
                         className="flex flex-col items-center bg-cyan-200 p-6 rounded-xl shadow-xl text-cyan-900 space-y-4"
                         data-scroll
-                        data-scroll-speed="3"
+                        data-scroll-speed="2"
                     >
                         <h1 className="text-3xl sm:text-6xl text-center font-poppins transition duration-400 hover:text-cyan-700 w-fit">
                             Minhas especialidades

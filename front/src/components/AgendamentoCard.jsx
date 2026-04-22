@@ -7,6 +7,7 @@ import { ChevronLeft, ChevronRight, Clock, Leaf, MapPin, Video, User,Mail,Phone,
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { bookAppointment, getAvailableSlots } from "../lib/api";
 import { useNavigate } from "react-router-dom";
+import { useScroll } from "../contexts/ScrollContext";
 import { toast } from "react-toastify";
 import lottieLoading from "../assets/Run Forrest Run.lottie";
 
@@ -23,6 +24,7 @@ function buildCalendarDays(currentMonth) {
 
 export default function Agendamento() {
   const navigate = useNavigate();
+  const { isMobile } = useScroll();
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
@@ -131,7 +133,7 @@ export default function Agendamento() {
 
   return (
     <div className="relative bg-white rounded-3xl" style={{ boxShadow: ' 8px 12px rgba(77, 77, 77, 0.12)' }}>
-      {(slotsLoading || loading) && createPortal(
+      {(loading || (slotsLoading && !isMobile)) && createPortal(
         <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/30 backdrop-blur-[2px]">
           <DotLottieReact src={lottieLoading} loop autoplay style={{ width: 180, height: 180 }} />
         </div>,
