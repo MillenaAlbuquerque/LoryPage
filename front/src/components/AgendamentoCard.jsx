@@ -24,7 +24,7 @@ function buildCalendarDays(currentMonth) {
 
 export default function Agendamento() {
   const navigate = useNavigate();
-  const { isMobile } = useScroll();
+  const { isMobile, updateScroll } = useScroll();
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
@@ -53,6 +53,8 @@ export default function Agendamento() {
         setAvailableSlots({});
       } finally {
         setSlotsLoading(false);
+        // Atualiza o Locomotive após conteúdo carregado para corrigir altura
+        setTimeout(() => updateScroll(), 100);
       }
     };
     fetchSlots();

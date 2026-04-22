@@ -31,6 +31,9 @@ function HashScroller() {
 
 		scroll.scrollTo(0, { duration: 0, disableLerp: true });
 		scroll.update();
+		// Segundo update tardio para pegar conteúdo que renderiza após a navegação (ex: AgendamentoCard)
+		const timer = setTimeout(() => scroll.update(), 600);
+		return () => clearTimeout(timer);
 	}, [location.pathname, location.hash, scroll]);
 
 	// Scroll para a seção do hash

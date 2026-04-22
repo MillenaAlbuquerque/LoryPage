@@ -49,8 +49,14 @@ export const ScrollProvider = ({ children }) => {
 		};
 	}, []);
 
+	const updateScroll = () => {
+		if (scrollRef.current) {
+			scrollRef.current.update();
+		}
+	};
+
 	return (
-		<ScrollContext.Provider value={{ scroll: scrollInstance, isMobile }}>
+		<ScrollContext.Provider value={{ scroll: scrollInstance, isMobile, updateScroll }}>
 			{children}
 		</ScrollContext.Provider>
 	);
