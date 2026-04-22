@@ -24,18 +24,13 @@ export default function Navbar() {
     if (href?.startsWith("#")) {
       event.preventDefault();
       if (closeMobile) setMobileOpen(false);
-      if (isAgendamentoPage) {
-        setTimeout(() => navigate("/" + href), closeMobile ? 350 : 0);
+      // Sempre navega via React Router para que o HashScroller seja o único responsável pelo scroll
+      // Evita múltiplos timers acumulados e race conditions entre Navbar e HashScroller
+      const doNavigate = () => navigate("/" + href);
+      if (closeMobile) {
+        setTimeout(doNavigate, 350);
       } else {
-        const delay = closeMobile ? 350 : 0;
-        setTimeout(() => {
-          const target = document.querySelector(href);
-          if (target && scroll) {
-            scroll.scrollTo(target, { offset: -24, duration: 900 });
-          } else if (target) {
-            target.scrollIntoView({ behavior: "smooth", block: "start" });
-          }
-        }, delay);
+        doNavigate();
       }
     } else if (href?.startsWith("/")) {
       event.preventDefault();

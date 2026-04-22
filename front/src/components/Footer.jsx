@@ -6,7 +6,7 @@ import logoClara from "../assets/logoClara.png";
 export default function Footer() {
 	return (
 		<footer data-scroll-section className="bg-emerald-800">
-            <div className="mx-auto flex w-full max-w-8xl flex-col items-center justify-between gap-3 px-4 py-2 text-center text-pink-900 md:flex-row md:text-left md:px-12 md:py-1">
+            <div className="mx-auto flex w-full max-w-8xl flex-col items-center justify-between gap-3 px-4 py-2 text-center md:flex-row md:text-left md:px-12 md:py-1">
                 <div className="flex items-center gap-2">
 					<img src={logoClara} alt="Lory Cavalcante" className="h-14 w-auto transition-transform group-hover:scale-105" />
 					<span className="font-raleway text-xl text-white font-semibold">
@@ -14,14 +14,14 @@ export default function Footer() {
 					</span>
 				</div>
 				<div className="flex items-center gap-4 font-poppins text-sm">
-					<a href="https://www.instagram.com/lorycavalcantenutri" className="transition-colors hover:text-pink-700">
-						<FaInstagram className="inline-block h-5 w-5 text-white transition-colors hover:text-pink-900" />
+					<a href="https://www.instagram.com/lorycavalcantenutri" className="transition-colors hover:text-gray-800">
+						<FaInstagram className="inline-block h-5 w-5 text-white transition-colors hover:text-gray-800" />
 					</a>
-					<a href="https://api.whatsapp.com/message/X3RQJTRTIKX5G1?autoload=1&app_absent=0&utm_source=ig" className="transition-colors hover:text-pink-700">
-						<FaWhatsapp className="inline-block h-5 w-5 text-white transition-colors hover:text-pink-900" />
+					<a href="https://api.whatsapp.com/message/X3RQJTRTIKX5G1?autoload=1&app_absent=0&utm_source=ig" className="transition-colors hover:text-gray-800">
+						<FaWhatsapp className="inline-block h-5 w-5 text-white transition-colors hover:text-gray-800" />
 					</a>
-					<a href="mailto:lory@lcnutricao.com.br" className="transition-colors hover:text-pink-700">
-					<MdOutlineMailOutline className="inline-block h-5 w-5 text-white transition-colors hover:text-pink-900" />
+					<a href="mailto:lory@lcnutricao.com.br" className="transition-colors hover:text-gray-800">
+					<MdOutlineMailOutline className="inline-block h-5 w-5 text-white transition-colors hover:text-gray-800" />
 					</a>
 				</div>
 			</div>

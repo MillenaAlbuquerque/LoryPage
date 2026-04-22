@@ -7,8 +7,6 @@ import { useScroll } from "../contexts/ScrollContext";
 function Agendamento({ onBack }) {
 	const { scroll } = useScroll();
 
-	// Chama scroll.update() múltiplas vezes para garantir que o Locomotive
-	// recalcule a altura correta conforme o conteúdo async vai carregando
 	useEffect(() => {
 		if (!scroll) return;
 		scroll.scrollTo(0, { duration: 0, disableLerp: true });

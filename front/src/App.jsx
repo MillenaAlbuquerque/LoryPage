@@ -15,52 +15,63 @@ import Agendamento from "./pages/Agendamento";
 function HashScroller() {
 	const location = useLocation();
 	const { scroll } = useScroll();
+	// Rastreia o pathname anterior a QUALQUER mudança de rota
 	const prevPathnameRef = useRef(location.pathname);
 
-	// Reseta scroll ao topo apenas quando muda de página (não quando scroll inicializa)
-	// e apenas quando não há hash (o hash scroll cuida do posicionamento)
+	// Atualiza o ref a cada mudança de localização
 	useEffect(() => {
-		const prev = prevPathnameRef.current;
-		prevPathnameRef.current = location.pathname;
+		return () => {
+			prevPathnameRef.current = location.pathname;
+		};
+	}, [location.pathname, location.hash]);
 
-		// Ignora: mesma página (mudança de hash) ou scroll inicializando
-		if (prev === location.pathname) return;
-		// Se tem hash, deixa o efeito de hash cuidar (inclui reset implícito via update)
+	// Reset ao topo quando muda de página sem hash
+	useEffect(() => {
 		if (location.hash) return;
 		if (!scroll) return;
 
 		scroll.scrollTo(0, { duration: 0, disableLerp: true });
 		scroll.update();
-		// Segundo update tardio para pegar conteúdo que renderiza após a navegação (ex: AgendamentoCard)
 		const timer = setTimeout(() => scroll.update(), 600);
 		return () => clearTimeout(timer);
-	}, [location.pathname, location.hash, scroll]);
+	}, [location.pathname, scroll]);
 
 	// Scroll para a seção do hash
 	useEffect(() => {
 		if (!location.hash) return;
 		const id = location.hash.slice(1);
 
-		const tryScroll = (attempts = 0) => {
+		// Veio de outra página se o pathname anterior era diferente
+		const crossPage = prevPathnameRef.current !== location.pathname;
+
+		const doScroll = () => {
 			const target = document.getElementById(id);
-			if (target) {
-				if (scroll) {
-					// Reseta ao topo primeiro para garantir posição limpa
+			if (!target) return false;
+
+			if (scroll) {
+				if (crossPage) {
 					scroll.scrollTo(0, { duration: 0, disableLerp: true });
-					scroll.update();
-					// Aguarda o locomotive recalcular antes de animar
-					setTimeout(() => {
-						scroll.scrollTo(target, { offset: -24, duration: 900 });
-					}, 400);
+					requestAnimationFrame(() => {
+						scroll.update();
+						requestAnimationFrame(() => {
+							scroll.scrollTo(target, { offset: -24, duration: 900 });
+						});
+					});
 				} else {
-					target.scrollIntoView({ behavior: "smooth", block: "start" });
+					scroll.scrollTo(target, { offset: -24, duration: 900 });
 				}
-			} else if (attempts < 20) {
-				setTimeout(() => tryScroll(attempts + 1), 150);
+			} else {
+				target.scrollIntoView({ behavior: "smooth", block: "start" });
 			}
+			return true;
 		};
 
-		const timer = setTimeout(() => tryScroll(), 500);
+		const tryScroll = (attempts = 0) => {
+			if (doScroll()) return;
+			if (attempts < 20) setTimeout(() => tryScroll(attempts + 1), 100);
+		};
+
+		const timer = setTimeout(() => tryScroll(), crossPage ? 100 : 0);
 		return () => clearTimeout(timer);
 	}, [location.hash, location.pathname, scroll]);
 

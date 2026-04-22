@@ -53,7 +53,6 @@ export default function Agendamento() {
         setAvailableSlots({});
       } finally {
         setSlotsLoading(false);
-        // Atualiza o Locomotive após conteúdo carregado para corrigir altura
         setTimeout(() => updateScroll(), 100);
       }
     };
@@ -451,7 +450,6 @@ export default function Agendamento() {
                   </div>
                 </form>
               </div>
-
                    <div className="space-y-2 h-20">
                                       
                   </div>               
@@ -716,6 +714,7 @@ export default function Agendamento() {
                 setSelectedDate(null);
                 setSelectedTime(null);
                 setForm({ name: "", email: "", phone: ""});
+                navigate("/");
               }}
               className="font-poppins bg-[#B9F7CE] text-green-900 shadow-lg px-8 py-2 text-lg cursor-pointer rounded-xl w-fit self-center hover:bg-green-900 hover:text-white hover:scale-105 transition duration-300"
             >
