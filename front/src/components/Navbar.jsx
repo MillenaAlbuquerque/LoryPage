@@ -9,6 +9,7 @@ const navLinks = [
   { label: "Sobre mim", href: "#sobre" },
   { label: "Especialidades", href: "#especialidades" },
   { label: "Depoimentos", href: "#depoimentos" },
+  { label: "Contato", href: "#contato" },
   { label: "Agende sua consulta", href: "/agendamento" },
 ];
 

@@ -50,7 +50,7 @@ function Contato({ onAgendarClick }) {
                     data-scroll-speed="3"
                 >
                     <h1 className="w-fit text-center font-poppins text-5xl transition duration-400 hover:text-green-700 lg:text-6xl">
-                        Consultas
+                        Contato
                     </h1>
                     <p className="text-sm sm:text-base  font-poppins transition duration-400 hover:text-green-700">
                         Se você sente que:<br/> 

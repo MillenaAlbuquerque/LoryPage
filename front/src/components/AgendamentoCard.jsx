@@ -24,6 +24,18 @@ function filterPastTimes(times, date, today) {
 }
 
 
+function formatPhone(value) {
+  const digits = value.replace(/\D/g, "").slice(0, 11);
+  if (digits.length <= 10) {
+    return digits
+      .replace(/^(\d{2})(\d)/, "($1) $2")
+      .replace(/(\d{4})(\d)/, "$1-$2");
+  }
+  return digits
+    .replace(/^(\d{2})(\d)/, "($1) $2")
+    .replace(/(\d{5})(\d)/, "$1-$2");
+}
+
 function buildCalendarDays(currentMonth) {
   const start = startOfMonth(currentMonth);
   const end = endOfMonth(currentMonth);
@@ -44,6 +56,9 @@ export default function Agendamento() {
   const [loading, setLoading] = useState(false);
   const [availableSlots, setAvailableSlots] = useState({});
   const [slotsLoading, setSlotsLoading] = useState(true);
+  const [emailError, setEmailError] = useState(false);
+
+  const validateEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value);
 
   const { days, prefixDays } = buildCalendarDays(currentMonth);
   const today = startOfDay(new Date());
@@ -131,6 +146,11 @@ export default function Agendamento() {
       toast.error("Por favor, preencha todos os campos obrigatórios.");
       return;
     }
+    if (!validateEmail(form.email)) {
+      setEmailError(true);
+      toast.error("Por favor, insira um e-mail válido.");
+      return;
+    }
     setMobileStep("calendar");
   };
 
@@ -185,22 +205,25 @@ export default function Agendamento() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium font-poppins text-gray-800 mb-2">Email *</label>
+                <label className="block text-sm font-medium font-poppins text-gray-800 mb-2">E-mail *</label>
                 <input
                   required
                   type="email"
                   value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  onChange={(e) => { setForm({ ...form, email: e.target.value }); setEmailError(false); }}
+                  onBlur={(e) => { if (e.target.value) setEmailError(!validateEmail(e.target.value)); }}
                   placeholder="seu@email.com"
-                  className="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm bg-white focus:outline-none focus:ring-1 focus:ring-green-400"
+                  className={`w-full border rounded-xl px-4 py-2.5 text-sm bg-white focus:outline-none focus:ring-1 ${emailError ? "border-red-400 focus:ring-red-400" : "border-gray-300 focus:ring-green-400"}`}
                 />
+                {emailError && <p className="text-red-500 text-xs mt-1 font-poppins">Digite um e-mail válido (ex: nome@email.com)</p>}
               </div>
               <div>
                 <label className="block text-sm font-medium font-poppins text-gray-800 mb-2">Telefone *</label>
                 <input
                   value={form.phone}
-                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                  onChange={(e) => setForm({ ...form, phone: formatPhone(e.target.value) })}
                   placeholder="(00) 00000-0000"
+                  inputMode="numeric"
                   className="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm bg-white focus:outline-none focus:ring-1 focus:ring-green-400"
                 />
               </div>
@@ -422,22 +445,25 @@ export default function Agendamento() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium font-poppins text-gray-800 mb-1.5">Email *</label>
+                    <label className="block text-sm font-medium font-poppins text-gray-800 mb-1.5">E-mail *</label>
                     <input
                       required
                       type="email"
                       value={form.email}
-                      onChange={(e) => setForm({ ...form, email: e.target.value })}
+                      onChange={(e) => { setForm({ ...form, email: e.target.value }); setEmailError(false); }}
+                      onBlur={(e) => { if (e.target.value) setEmailError(!validateEmail(e.target.value)); }}
                       placeholder="seu@email.com"
-                      className="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm bg-background focus:outline-none focus:ring-1 focus:ring-green-400 focus:border-primary"
+                      className={`w-full border rounded-xl px-4 py-2.5 text-sm bg-background focus:outline-none focus:ring-1 focus:border-primary ${emailError ? "border-red-400 focus:ring-red-400" : "border-gray-300 focus:ring-green-400"}`}
                     />
+                    {emailError && <p className="text-red-500 text-xs mt-1 font-poppins">Digite um e-mail válido (ex: nome@email.com)</p>}
                   </div>
                   <div>
                     <label className="block text-sm font-medium font-poppins text-gray-800 mb-1.5">Telefone *</label>
                     <input
                       value={form.phone}
-                      onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                      onChange={(e) => setForm({ ...form, phone: formatPhone(e.target.value) })}
                       placeholder="(00) 00000-0000"
+                      inputMode="numeric"
                       className="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm bg-background focus:outline-none focus:ring-1 focus:ring-green-400 focus:border-primary"                    />
                   </div>
                    <div className="flex items-center gap-2">
