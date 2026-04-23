@@ -75,8 +75,6 @@ export default function Depoimentos() {
 					{depoimentos.map((dep, i) => (
 						<motion.div
 							key={dep.id}
-							data-scroll
-							data-scroll-speed={0.6 + i * 0.2}
 							initial={{ opacity: 0, x: 30 }}
 							whileInView={{ opacity: 1, x: 0 }}
 							viewport={{ once: true }}
