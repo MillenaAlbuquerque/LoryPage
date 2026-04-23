@@ -18,6 +18,8 @@
     "@react-stately/utils": "^3.11.0",
     "@tailwindcss/vite": "^4.1.8",
     "@untitledui/icons": "^0.0.22",
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",

@@ -12,6 +12,7 @@ import Contato from "./components/Contato";
 import Footer from "./components/Footer";
 import Agendamento from "./pages/Agendamento";
 
+
 function HashScroller() {
 	const location = useLocation();
 	const { scroll } = useScroll();
