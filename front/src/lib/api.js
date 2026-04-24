@@ -41,7 +41,12 @@ const getInitToken = async () => {
   }
 
   // OBTÉM NOVO TOKEN
-  const response = await fetch(`${BASE_URL}/init`);
+  let response;
+  try {
+    response = await fetch(`${BASE_URL}/init`);
+  } catch {
+    throw new Error("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
+  }
   if (!response.ok) {
     throw new Error("Falha ao obter token inicial");
   }
@@ -80,28 +85,76 @@ const buildHeaders = (token, recaptchaToken) => ({
   "Content-Type": "application/json",
 });
 
-const makeAuthenticatedRequest = async (url, options = {}) => {
-  const token = await getInitToken();
-  const recaptchaToken = await getRecaptchaToken();
+const handleApiError = async (response) => {
+  let errorMessage;
+  try {
+    const errorData = await response.json();
+    errorMessage = errorData.erro;
+  } catch {
+    errorMessage = null;
+  }
 
-  const headers = buildHeaders(token, recaptchaToken);
-  const response = await fetch(url, { ...options, headers });
+  switch (response.status) {
+    case 401:
+      throw new Error("Sessão inválida. Recarregue a página e tente novamente.");
+    case 403:
+      if (errorMessage === 'ReCAPTCHA inválido') {
+        throw new Error("Verificação de segurança falhou. Tente novamente.");
+      }
+      throw new Error(errorMessage || "Acesso negado.");
+    case 429:
+      throw new Error("Muitas tentativas. Aguarde um momento e tente novamente.");
+    case 500:
+      throw new Error(errorMessage || "Erro interno no servidor. Tente novamente mais tarde.");
+    case 503:
+      throw new Error(errorMessage || "Serviço temporariamente indisponível. Tente novamente em instantes.");
+    default:
+      throw new Error(errorMessage || `Erro inesperado (${response.status}). Tente novamente.`);
+  }
+};
+
+const makeAuthenticatedRequest = async (url, options = {}) => {
+  let token, recaptchaToken;
+
+  token = await getInitToken();
+  recaptchaToken = await getRecaptchaToken();
+
+  let response;
+  try {
+    const headers = buildHeaders(token, recaptchaToken);
+    response = await fetch(url, { ...options, headers });
+  } catch {
+    throw new Error("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
+  }
 
   if (response.status === 403) {
+    let errorData;
     try {
-      const errorData = await response.json();
-      if (errorData.erro === 'Token inválido ou expirado') {
-        sessionStorage.removeItem('api_token');
-        sessionStorage.removeItem('api_token_exp');
-
-        const newToken = await getInitToken();
-        const newRecaptchaToken = await getRecaptchaToken();
-        const newHeaders = buildHeaders(newToken, newRecaptchaToken);
-
-        return fetch(url, { ...options, headers: newHeaders });
-      }
-    } catch (e) {
+      errorData = await response.json();
+    } catch {
+      throw new Error("Acesso negado.");
     }
+
+    if (errorData.erro === 'Token inválido ou expirado') {
+      sessionStorage.removeItem('api_token');
+      sessionStorage.removeItem('api_token_exp');
+
+      const newToken = await getInitToken();
+      const newRecaptchaToken = await getRecaptchaToken();
+
+      try {
+        const newHeaders = buildHeaders(newToken, newRecaptchaToken);
+        return await fetch(url, { ...options, headers: newHeaders });
+      } catch {
+        throw new Error("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
+      }
+    }
+
+    if (errorData.erro === 'ReCAPTCHA inválido') {
+      throw new Error("Verificação de segurança falhou. Tente novamente.");
+    }
+
+    throw new Error(errorData.erro || "Acesso negado.");
   }
 
   return response;
@@ -113,18 +166,22 @@ export const bookAppointment = async ({ data, hora, nome, email, online, phone, 
     body: JSON.stringify({ data, hora, nome, email, online, phone, duracao }),
   });
 
-  const payload = await response.json();
   if (!response.ok) {
-    throw new Error(payload.erro || "Erro ao agendar consulta");
+    await handleApiError(response);
   }
-  return payload;
+
+  const payload = await response.json();
+  return {
+    evento: payload,
+    aviso: payload.aviso || null,
+  };
 };
 
 export const getAvailableSlots = async () => {
   const response = await makeAuthenticatedRequest(`${BASE_URL}/`);
 
   if (!response.ok) {
-    throw new Error("Falha ao buscar horários disponíveis");
+    await handleApiError(response);
   }
 
   const data = await response.json();
