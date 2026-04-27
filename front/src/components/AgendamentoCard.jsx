@@ -57,6 +57,7 @@ export default function Agendamento() {
   const [availableSlots, setAvailableSlots] = useState({});
   const [slotsLoading, setSlotsLoading] = useState(true);
   const [emailError, setEmailError] = useState(false);
+  const [emailAviso, setEmailAviso] = useState(null);
 
   const validateEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value);
 
@@ -75,6 +76,7 @@ export default function Agendamento() {
         setAvailableSlots(slotsMap);
       } catch (error) {
         console.error("Erro ao buscar horários disponíveis:", error);
+        toast.error(error.message || "Erro ao carregar horários disponíveis. Recarregue a página.");
         setAvailableSlots({});
       } finally {
         setSlotsLoading(false);
@@ -106,7 +108,7 @@ export default function Agendamento() {
   const submitBooking = async () => {
     setLoading(true);
     try {
-      await bookAppointment({
+      const { aviso } = await bookAppointment({
         data: format(selectedDate, "dd/MM/yyyy"),
         hora: selectedTime,
         nome: form.name,
@@ -115,6 +117,7 @@ export default function Agendamento() {
         online: form.online,
         duracao: form.online ? 45 : 60,
       });
+      setEmailAviso(aviso || null);
       if (mobileStep !== "form") {
         // Mobile flow
         setMobileStep("success");
@@ -124,7 +127,7 @@ export default function Agendamento() {
       }
     } catch (error) {
       console.error(error);
-      toast.error("Erro ao agendar consulta. Verifique os dados e tente novamente.");
+      toast.error(error.message || "Erro ao agendar consulta. Verifique os dados e tente novamente.");
     } finally {
       setLoading(false);
     }
@@ -165,7 +168,7 @@ export default function Agendamento() {
   return (
     <div className="relative bg-white rounded-3xl" style={{ boxShadow: ' 8px 12px rgba(77, 77, 77, 0.12)' }}>
       {(loading || (slotsLoading && !isMobile)) && createPortal(
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/30 backdrop-blur-[2px]">
+        <div className="fixed inset-0 z-9999 flex items-center justify-center bg-black/30 backdrop-blur-[2px]">
           <DotLottieReact src={lottieLoading} loop autoplay style={{ width: 180, height: 180 }} />
         </div>,
         document.body
@@ -393,9 +396,15 @@ export default function Agendamento() {
                 <strong>{selectedDate && format(selectedDate, "dd/MM/yyyy")}</strong> às{" "}
                 <strong>{selectedTime}</strong>.
               </p>
-              <p className="font-poppins text-muted-foreground text-sm max-w-sm mb-10">
-                Chegará um e-mail de confirmação com orientações.
-              </p>
+              {emailAviso ? (
+                <p className="font-poppins text-amber-700 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 text-sm max-w-sm mb-10">
+                  ⚠️ Não foi possível enviar o e-mail de confirmação. Por favor, anote sua consulta: <strong>{selectedDate && format(selectedDate, "dd/MM/yyyy")}</strong> às <strong>{selectedTime}</strong>. Em caso de dúvidas, entre em contato pelo WhatsApp.
+                </p>
+              ) : (
+                <p className="font-poppins text-muted-foreground text-sm max-w-sm mb-10">
+                  Chegará um e-mail de confirmação com orientações.
+                </p>
+              )}
               <p className="font-poppins text-muted-foreground text-sm max-w-sm mb-10">
                 Obrigada por confiar em mim para cuidar da sua saúde! 💚 
               </p>
@@ -405,6 +414,7 @@ export default function Agendamento() {
                   setMobileStep("form");
                   setSelectedDate(null);
                   setSelectedTime(null);
+                  setEmailAviso(null);
                   setForm({ name: "", email: "", phone: "", online: false });
                 }}
                 className="font-poppins bg-[#B9F7CE] text-green-900 shadow-lg px-8 py-2 text-lg cursor-pointer rounded-xl w-fit self-center hover:bg-green-900 hover:text-white hover:scale-105 transition duration-300"
@@ -626,7 +636,7 @@ export default function Agendamento() {
                   </p>
                 </div>
 
-                <div className="my-6 border-t-1 border-green-200"></div>
+                <div className="my-6 border-t border-green-200"></div>
 
                 <div className="space-y-4">
                   <div className="bg-green-100 rounded-3xl p-4 border border-green-200/60">
@@ -662,11 +672,11 @@ export default function Agendamento() {
                   
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="group">
-                      <label className="block text-sm font-semibold text-gray-800 mb-2 flex items-center gap-1">
+                      <label className="flex text-sm font-semibold text-gray-800 mb-2 items-center gap-1">
                         <span className="w-5 h-5 text-white flex items-center justify-center text-xs font-bold"><User className="text-gray-700"/></span>
                         Nome
                       </label>
-                      <div className="bg-gradient-to-r from-green-50 to-green-100/50 border-2 border-green-200 rounded-3xl p-3 group-hover:border-green-400 transition-all">
+                      <div className="bg-linear-to-r from-green-50 to-green-100/50 border-2 border-green-200 rounded-3xl p-3 group-hover:border-green-400 transition-all">
                         <p className="text-gray-900 font-medium text-lg">
                           {form.name}
                         </p>
@@ -674,11 +684,11 @@ export default function Agendamento() {
                     </div>
 
                     <div className="group">
-                      <label className="block text-sm font-semibold text-gray-800 mb-2 flex items-center gap-2">
+                      <label className="flex text-sm font-semibold text-gray-800 mb-2 items-center gap-2">
                         <span className="w-5 h-5  text-white flex items-center justify-center text-xs font-bold"><Mail className="text-gray-700"/></span>
                         Email
                       </label>
-                      <div className="bg-gradient-to-r from-green-50 to-green-100/50 border-2 border-green-200 rounded-3xl p-3 group-hover:border-green-400 transition-all">
+                      <div className="bg-linear-to-r from-green-50 to-green-100/50 border-2 border-green-200 rounded-3xl p-3 group-hover:border-green-400 transition-all">
                         <p className="text-gray-900 font-medium text-lg break-all">
                           {form.email}
                         </p>
@@ -686,11 +696,11 @@ export default function Agendamento() {
                     </div>
 
                     <div className="group">
-                      <label className="block text-sm font-semibold text-gray-800 mb-2 flex items-center gap-2">
+                      <label className="flex text-sm font-semibold text-gray-800 mb-2 items-center gap-2">
                         <span className="w-5 h-5  text-white flex items-center justify-center text-xs font-bold"><Phone className="text-gray-700"/></span>
                         Telefone
                       </label>
-                      <div className="bg-gradient-to-r from-green-50 to-green-100/50 border-2 border-green-200 rounded-3xl p-3 group-hover:border-green-400 transition-all">
+                      <div className="bg-linear-to-r from-green-50 to-green-100/50 border-2 border-green-200 rounded-3xl p-3 group-hover:border-green-400 transition-all">
                         <p className="text-gray-900 font-medium text-lg">
                           {form.phone}
                         </p>
@@ -739,9 +749,15 @@ export default function Agendamento() {
               <strong>{selectedDate && format(selectedDate, "dd/MM/yyyy")}</strong> às{" "}
               <strong>{selectedTime}</strong>.
             </p>
-            <p className="font-poppins text-muted-foreground text-sm max-w-sm mb-10">
-              Chegará um e-mail de confirmação com orientações.
-            </p>
+            {emailAviso ? (
+              <p className="font-poppins text-amber-700 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 text-sm max-w-sm mb-10">
+                Entre em contato no WhatsApp para orientações.
+              </p>
+            ) : (
+              <p className="font-poppins text-muted-foreground text-sm max-w-sm mb-10">
+                Chegará um e-mail de confirmação com orientações.
+              </p>
+            )}
             <p className="font-poppins text-muted-foreground text-sm max-w-sm mb-10">
               Obrigada por confiar em mim para cuidar da sua saúde! 💚 
             </p>
@@ -751,6 +767,7 @@ export default function Agendamento() {
                 setMobileStep("form");
                 setSelectedDate(null);
                 setSelectedTime(null);
+                setEmailAviso(null);
                 setForm({ name: "", email: "", phone: ""});
                 navigate("/");
               }}

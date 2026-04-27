@@ -11,12 +11,16 @@ const ScrollContext = createContext();
 
 const isTouchDevice = () =>
 	typeof window !== "undefined" &&
-	("ontouchstart" in window || navigator.maxTouchPoints > 0);
+	(
+		"ontouchstart" in window ||
+		navigator.maxTouchPoints > 0 ||
+		window.matchMedia("(any-pointer: coarse)").matches
+	);
 
 export const ScrollProvider = ({ children }) => {
 	const scrollRef = useRef(null);
 	const [scrollInstance, setScrollInstance] = useState(null);
-	const [isMobile, setIsMobile] = useState(false);
+	const [isMobile, setIsMobile] = useState(() => isTouchDevice());
 
 	useEffect(() => {
 		const mobile = isTouchDevice();

@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useScroll } from "../contexts/ScrollContext";
-import logoVerde from "../assets/logoVerde.png";
+import logoVerde from "../assets/Lory-nav.png";
 
 const navLinks = [
   { label: "Sobre mim", href: "#sobre" },
@@ -16,7 +16,7 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { scroll } = useScroll();
+  const { scroll, isMobile } = useScroll();
   const navigate = useNavigate();
   const location = useLocation();
   const isAgendamentoPage = location.pathname === "/agendamento";
@@ -84,7 +84,7 @@ export default function Navbar() {
           </span>}
         </a>
 
-        <div className="hidden md:flex items-center gap-8 ">
+        <div className={`${isMobile ? 'hidden' : 'hidden md:flex'} items-center gap-8`}>
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -103,7 +103,7 @@ export default function Navbar() {
         </div>
 
         <button
-          className="md:hidden focus:outline-none"
+          className={`${isMobile ? 'block' : 'md:hidden'} focus:outline-none`}
           onClick={() => setMobileOpen(!mobileOpen)}
         >
           {mobileOpen ? <X className={`w-6 h-6 ${isAgendamentoPage || scrolled ? 'text-green-700' : 'text-white'}`} /> : <Menu className={`w-6 h-6 ${isAgendamentoPage || scrolled ? 'text-green-700' : 'text-white'}`} />}
