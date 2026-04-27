@@ -118,6 +118,13 @@ export default function Agendamento() {
         duracao: form.online ? 45 : 60,
       });
       setEmailAviso(aviso || null);
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "schedule_success",
+        form_name: "agendamento",
+        appointment_type: form.online ? "online" : "presencial",
+        value: 220,
+      });
       if (mobileStep !== "form") {
         // Mobile flow
         setMobileStep("success");
