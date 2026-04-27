@@ -14,7 +14,7 @@ function Especialidades() {
                         data-scroll
                         data-scroll-speed="2"
                     >
-                        <h1 className="text-3xl sm:text-6xl text-center font-poppins transition duration-400 hover:text-cyan-700 w-fit">
+                        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-center font-poppins transition duration-400 hover:text-cyan-700 w-full break-words">
                             Minhas especialidades
                         </h1>
                         <p className="text-sm sm:text-base  font-poppins transition duration-400 hover:text-cyan-700">
