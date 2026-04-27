@@ -13,7 +13,7 @@ export default function SobreMim() {
 				>
 					<img
 						src={lory}
-						className="h-100 sm:h-auto sm:max-h-2/3 pt-12 cursor-pointer xl:drop-shadow-[60px_-60px_0_rgba(252,211,77,1)]
+						className="h-100 sm:h-72 md:h-80 lg:h-96 xl:h-[28rem] 2xl:h-[32rem] pt-12 w-auto cursor-pointer xl:drop-shadow-[60px_-60px_0_rgba(252,211,77,1)]
                                     transition duration-400 hover:scale-120 rounded-lg hover:drop-shadow-none "
 					></img>
 				</a>

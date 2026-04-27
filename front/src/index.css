@@ -105,14 +105,6 @@ html.has-scroll-dragging {
 	}
 }
 
-/* Parallax background: only fixed on real desktop (non-touch, wide screen) */
-@media (min-width: 640px) and (any-pointer: fine) {
-	.landing-bg {
-		position: fixed !important;
-		inset: -2rem !important;
-	}
-}
-
 @media (any-pointer: coarse) {
 	.landing-bg {
 		position: absolute !important;

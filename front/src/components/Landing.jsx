@@ -25,7 +25,7 @@ export default function Landing() {
 			className="relative w-dvw flex flex-col justify-center overflow-hidden"
 			style={{ height: 'calc(var(--vh, 1dvh) * 100)' }}
 		>
-			<div className="landing-bg absolute inset-0 overflow-hidden">
+			<div className="landing-bg absolute -inset-[8%] overflow-hidden">
 				<img
 					src={fundoMobile}
 					className="sm:hidden h-full w-full object-cover object-center scale-100 brightness-80"
