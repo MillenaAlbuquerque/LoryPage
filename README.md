@@ -25,6 +25,7 @@
 - **Especialidades** — grid de cards animados com modal de expansão via Framer Motion
 - **Depoimentos** — avaliações de pacientes com animações de entrada progressiva
 - **Contato** — links diretos para Instagram, WhatsApp e e-mail, além de mapa integrado
+- **Agendamento** — Página para agendamento de consultas, escolha de horário e coleta de dados.
 - **Totalmente responsivo** — layout otimizado para mobile e desktop
 
 ---
@@ -101,8 +102,8 @@ npm run build
 npm run deploy
 ```
 
-O site está publicado automaticamente na branch `gh-pages` e disponível em:
-(https://millenaalbuquerque.github.io/LoryPage/)
+O site está publicado e disponível em:
+(https://www.lcnutricao.com.br/)
 
 ---
 
@@ -114,15 +115,7 @@ O site está publicado automaticamente na branch `gh-pages` e disponível em:
 | Sobre Mim | `#sobre` | Foto e trajetória profissional |
 | Especialidades | `#especialidades` | Áreas de atuação com cards |
 | Depoimentos | `#depoimentos` | Avaliações de pacientes |
-| Contato | `#contato` | WhatsApp, Instagram, e-mail e mapa |
-
----
-
-## 🔮 Melhorias Futuras
-
-- [ ] **Deploy em produção** — publicar o site em domínio próprio (ex: `lorycavalcante.com.br`)
-- [ ] **API de agendamento** — backend para que pacientes possam marcar consultas diretamente pela página, sem precisar de WhatsApp ou e-mail
-- [ ] **Notificações automáticas** — envio de confirmação e lembrete de consulta por e-mail ou WhatsApp
+| Contato | `#contato` | Botão para agendar consulta, WhatsApp, Instagram, e-mail e mapa |
 
 ---
 
