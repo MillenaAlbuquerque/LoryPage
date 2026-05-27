@@ -32,7 +32,7 @@ const socialItems = [
 const infoItems = [
     {
         icon: FaRegClock,
-        label: "Segunda a Sexta - 8h às 18h e Sábado - 8h às 13h",
+        label: "Segunda a Sexta das 8h às 19h e Sábado das 8h às 13h",
     },
     {
         icon: Video,
